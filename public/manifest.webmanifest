@@ -1,0 +1,11 @@
+{
+  "name": "SpeakWise AI",
+  "short_name": "SpeakWise",
+  "description": "Learn to speak English and understand accents, offline.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#dff1e6",
+  "theme_color": "#7fb69a",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

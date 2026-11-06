@@ -1,0 +1,1785 @@
+{
+ "version": 1,
+ "libraries": [
+  {
+   "id": "de",
+   "lang": "de",
+   "rec": "de-DE",
+   "name": "German (Thorsten, 8 emotions)",
+   "kind": "emotion",
+   "emotions": [
+    "neutral",
+    "amused",
+    "angry",
+    "disgusted",
+    "drunk",
+    "sleepy",
+    "surprised",
+    "whisper"
+   ],
+   "speaker": "Thorsten Müller, adult male",
+   "license": "CC0 1.0",
+   "credit": "Thorsten-Voice \"emotional\" 2021.06 by Thorsten Müller, optimized by Dominik Kreutz.",
+   "clips": [
+    {
+     "id": "403c27f9",
+     "text": "Also nicht missverstehen!",
+     "emotions": {
+      "neutral": "de/403c27f9_neutral.mp3",
+      "amused": "de/403c27f9_amused.mp3",
+      "angry": "de/403c27f9_angry.mp3",
+      "disgusted": "de/403c27f9_disgusted.mp3",
+      "drunk": "de/403c27f9_drunk.mp3",
+      "sleepy": "de/403c27f9_sleepy.mp3",
+      "surprised": "de/403c27f9_surprised.mp3",
+      "whisper": "de/403c27f9_whisper.mp3"
+     },
+     "file": "de/403c27f9_neutral.mp3"
+    },
+    {
+     "id": "a3d25378",
+     "text": "Da lache ich doch drüber!",
+     "emotions": {
+      "neutral": "de/a3d25378_neutral.mp3",
+      "amused": "de/a3d25378_amused.mp3",
+      "angry": "de/a3d25378_angry.mp3",
+      "disgusted": "de/a3d25378_disgusted.mp3",
+      "drunk": "de/a3d25378_drunk.mp3",
+      "sleepy": "de/a3d25378_sleepy.mp3",
+      "surprised": "de/a3d25378_surprised.mp3",
+      "whisper": "de/a3d25378_whisper.mp3"
+     },
+     "file": "de/a3d25378_neutral.mp3"
+    },
+    {
+     "id": "b1e38571",
+     "text": "Der Wein muss noch atmen.",
+     "emotions": {
+      "neutral": "de/b1e38571_neutral.mp3",
+      "amused": "de/b1e38571_amused.mp3",
+      "angry": "de/b1e38571_angry.mp3",
+      "disgusted": "de/b1e38571_disgusted.mp3",
+      "drunk": "de/b1e38571_drunk.mp3",
+      "sleepy": "de/b1e38571_sleepy.mp3",
+      "surprised": "de/b1e38571_surprised.mp3",
+      "whisper": "de/b1e38571_whisper.mp3"
+     },
+     "file": "de/b1e38571_neutral.mp3"
+    },
+    {
+     "id": "5d800827",
+     "text": "Er tut, wie ihm geheißen.",
+     "emotions": {
+      "neutral": "de/5d800827_neutral.mp3",
+      "amused": "de/5d800827_amused.mp3",
+      "angry": "de/5d800827_angry.mp3",
+      "disgusted": "de/5d800827_disgusted.mp3",
+      "drunk": "de/5d800827_drunk.mp3",
+      "sleepy": "de/5d800827_sleepy.mp3",
+      "surprised": "de/5d800827_surprised.mp3",
+      "whisper": "de/5d800827_whisper.mp3"
+     },
+     "file": "de/5d800827_neutral.mp3"
+    },
+    {
+     "id": "f8aae86f",
+     "text": "Ich rufe Sie dann zurück.",
+     "emotions": {
+      "neutral": "de/f8aae86f_neutral.mp3",
+      "amused": "de/f8aae86f_amused.mp3",
+      "angry": "de/f8aae86f_angry.mp3",
+      "disgusted": "de/f8aae86f_disgusted.mp3",
+      "drunk": "de/f8aae86f_drunk.mp3",
+      "sleepy": "de/f8aae86f_sleepy.mp3",
+      "surprised": "de/f8aae86f_surprised.mp3",
+      "whisper": "de/f8aae86f_whisper.mp3"
+     },
+     "file": "de/f8aae86f_neutral.mp3"
+    },
+    {
+     "id": "c8a74986",
+     "text": "Mutti stand unter Schock.",
+     "emotions": {
+      "neutral": "de/c8a74986_neutral.mp3",
+      "amused": "de/c8a74986_amused.mp3",
+      "angry": "de/c8a74986_angry.mp3",
+      "disgusted": "de/c8a74986_disgusted.mp3",
+      "drunk": "de/c8a74986_drunk.mp3",
+      "sleepy": "de/c8a74986_sleepy.mp3",
+      "surprised": "de/c8a74986_surprised.mp3",
+      "whisper": "de/c8a74986_whisper.mp3"
+     },
+     "file": "de/c8a74986_neutral.mp3"
+    },
+    {
+     "id": "106d5a7b",
+     "text": "Okay, ich warte im Wagen.",
+     "emotions": {
+      "neutral": "de/106d5a7b_neutral.mp3",
+      "amused": "de/106d5a7b_amused.mp3",
+      "angry": "de/106d5a7b_angry.mp3",
+      "disgusted": "de/106d5a7b_disgusted.mp3",
+      "drunk": "de/106d5a7b_drunk.mp3",
+      "sleepy": "de/106d5a7b_sleepy.mp3",
+      "surprised": "de/106d5a7b_surprised.mp3",
+      "whisper": "de/106d5a7b_whisper.mp3"
+     },
+     "file": "de/106d5a7b_neutral.mp3"
+    },
+    {
+     "id": "33e05292",
+     "text": "Hier steht alles unter Wasser.",
+     "emotions": {
+      "neutral": "de/33e05292_neutral.mp3",
+      "amused": "de/33e05292_amused.mp3",
+      "angry": "de/33e05292_angry.mp3",
+      "disgusted": "de/33e05292_disgusted.mp3",
+      "drunk": "de/33e05292_drunk.mp3",
+      "sleepy": "de/33e05292_sleepy.mp3",
+      "surprised": "de/33e05292_surprised.mp3",
+      "whisper": "de/33e05292_whisper.mp3"
+     },
+     "file": "de/33e05292_neutral.mp3"
+    },
+    {
+     "id": "9ab71e50",
+     "text": "Ich vermisse ihn seit gestern.",
+     "emotions": {
+      "neutral": "de/9ab71e50_neutral.mp3",
+      "amused": "de/9ab71e50_amused.mp3",
+      "angry": "de/9ab71e50_angry.mp3",
+      "disgusted": "de/9ab71e50_disgusted.mp3",
+      "drunk": "de/9ab71e50_drunk.mp3",
+      "sleepy": "de/9ab71e50_sleepy.mp3",
+      "surprised": "de/9ab71e50_surprised.mp3",
+      "whisper": "de/9ab71e50_whisper.mp3"
+     },
+     "file": "de/9ab71e50_neutral.mp3"
+    },
+    {
+     "id": "de7c4d36",
+     "text": "Man muss Kompromisse eingehen.",
+     "emotions": {
+      "neutral": "de/de7c4d36_neutral.mp3",
+      "amused": "de/de7c4d36_amused.mp3",
+      "angry": "de/de7c4d36_angry.mp3",
+      "disgusted": "de/de7c4d36_disgusted.mp3",
+      "drunk": "de/de7c4d36_drunk.mp3",
+      "sleepy": "de/de7c4d36_sleepy.mp3",
+      "surprised": "de/de7c4d36_surprised.mp3",
+      "whisper": "de/de7c4d36_whisper.mp3"
+     },
+     "file": "de/de7c4d36_neutral.mp3"
+    },
+    {
+     "id": "7335b89d",
+     "text": "Okay, dann lassen wir das weg.",
+     "emotions": {
+      "neutral": "de/7335b89d_neutral.mp3",
+      "amused": "de/7335b89d_amused.mp3",
+      "angry": "de/7335b89d_angry.mp3",
+      "disgusted": "de/7335b89d_disgusted.mp3",
+      "drunk": "de/7335b89d_drunk.mp3",
+      "sleepy": "de/7335b89d_sleepy.mp3",
+      "surprised": "de/7335b89d_surprised.mp3",
+      "whisper": "de/7335b89d_whisper.mp3"
+     },
+     "file": "de/7335b89d_neutral.mp3"
+    },
+    {
+     "id": "bdcb80ac",
+     "text": "War nett, mit dir zu plaudern.",
+     "emotions": {
+      "neutral": "de/bdcb80ac_neutral.mp3",
+      "amused": "de/bdcb80ac_amused.mp3",
+      "angry": "de/bdcb80ac_angry.mp3",
+      "disgusted": "de/bdcb80ac_disgusted.mp3",
+      "drunk": "de/bdcb80ac_drunk.mp3",
+      "sleepy": "de/bdcb80ac_sleepy.mp3",
+      "surprised": "de/bdcb80ac_surprised.mp3",
+      "whisper": "de/bdcb80ac_whisper.mp3"
+     },
+     "file": "de/bdcb80ac_neutral.mp3"
+    },
+    {
+     "id": "1be85221",
+     "text": "Weshalb schmerzen meine Zähne?",
+     "emotions": {
+      "neutral": "de/1be85221_neutral.mp3",
+      "amused": "de/1be85221_amused.mp3",
+      "angry": "de/1be85221_angry.mp3",
+      "disgusted": "de/1be85221_disgusted.mp3",
+      "drunk": "de/1be85221_drunk.mp3",
+      "sleepy": "de/1be85221_sleepy.mp3",
+      "surprised": "de/1be85221_surprised.mp3",
+      "whisper": "de/1be85221_whisper.mp3"
+     },
+     "file": "de/1be85221_neutral.mp3"
+    },
+    {
+     "id": "2e096c77",
+     "text": "Ziehen Sie sich einmal zurück!",
+     "emotions": {
+      "neutral": "de/2e096c77_neutral.mp3",
+      "amused": "de/2e096c77_amused.mp3",
+      "angry": "de/2e096c77_angry.mp3",
+      "disgusted": "de/2e096c77_disgusted.mp3",
+      "drunk": "de/2e096c77_drunk.mp3",
+      "sleepy": "de/2e096c77_sleepy.mp3",
+      "surprised": "de/2e096c77_surprised.mp3",
+      "whisper": "de/2e096c77_whisper.mp3"
+     },
+     "file": "de/2e096c77_neutral.mp3"
+    },
+    {
+     "id": "7c2099e3",
+     "text": "Auch ein ungewolltes Kind ist ein wunderbares Geschenk.",
+     "emotions": {
+      "neutral": "de/7c2099e3_neutral.mp3",
+      "amused": "de/7c2099e3_amused.mp3",
+      "angry": "de/7c2099e3_angry.mp3",
+      "disgusted": "de/7c2099e3_disgusted.mp3",
+      "drunk": "de/7c2099e3_drunk.mp3",
+      "sleepy": "de/7c2099e3_sleepy.mp3",
+      "surprised": "de/7c2099e3_surprised.mp3",
+      "whisper": "de/7c2099e3_whisper.mp3"
+     },
+     "file": "de/7c2099e3_neutral.mp3"
+    },
+    {
+     "id": "a20c363b",
+     "text": "Damit ist die energetische Sanierung vorerst vom Tisch.",
+     "emotions": {
+      "neutral": "de/a20c363b_neutral.mp3",
+      "amused": "de/a20c363b_amused.mp3",
+      "angry": "de/a20c363b_angry.mp3",
+      "disgusted": "de/a20c363b_disgusted.mp3",
+      "drunk": "de/a20c363b_drunk.mp3",
+      "sleepy": "de/a20c363b_sleepy.mp3",
+      "surprised": "de/a20c363b_surprised.mp3",
+      "whisper": "de/a20c363b_whisper.mp3"
+     },
+     "file": "de/a20c363b_neutral.mp3"
+    },
+    {
+     "id": "5ea8176d",
+     "text": "Der Nachbarsjunge hat es draußen beim Spielen gefunden.",
+     "emotions": {
+      "neutral": "de/5ea8176d_neutral.mp3",
+      "amused": "de/5ea8176d_amused.mp3",
+      "angry": "de/5ea8176d_angry.mp3",
+      "disgusted": "de/5ea8176d_disgusted.mp3",
+      "drunk": "de/5ea8176d_drunk.mp3",
+      "sleepy": "de/5ea8176d_sleepy.mp3",
+      "surprised": "de/5ea8176d_surprised.mp3",
+      "whisper": "de/5ea8176d_whisper.mp3"
+     },
+     "file": "de/5ea8176d_neutral.mp3"
+    },
+    {
+     "id": "ce18ee6b",
+     "text": "Die Mietwagenfirma wollte den Personalausweis kopieren.",
+     "emotions": {
+      "neutral": "de/ce18ee6b_neutral.mp3",
+      "amused": "de/ce18ee6b_amused.mp3",
+      "angry": "de/ce18ee6b_angry.mp3",
+      "disgusted": "de/ce18ee6b_disgusted.mp3",
+      "drunk": "de/ce18ee6b_drunk.mp3",
+      "sleepy": "de/ce18ee6b_sleepy.mp3",
+      "surprised": "de/ce18ee6b_surprised.mp3",
+      "whisper": "de/ce18ee6b_whisper.mp3"
+     },
+     "file": "de/ce18ee6b_neutral.mp3"
+    },
+    {
+     "id": "c80199cc",
+     "text": "Ist das eine Anspielung auf die Titelstory von gestern?",
+     "emotions": {
+      "neutral": "de/c80199cc_neutral.mp3",
+      "amused": "de/c80199cc_amused.mp3",
+      "angry": "de/c80199cc_angry.mp3",
+      "disgusted": "de/c80199cc_disgusted.mp3",
+      "drunk": "de/c80199cc_drunk.mp3",
+      "sleepy": "de/c80199cc_sleepy.mp3",
+      "surprised": "de/c80199cc_surprised.mp3",
+      "whisper": "de/c80199cc_whisper.mp3"
+     },
+     "file": "de/c80199cc_neutral.mp3"
+    },
+    {
+     "id": "d1415e5d",
+     "text": "Würdest du das eher als hell oder als dunkel einstufen?",
+     "emotions": {
+      "neutral": "de/d1415e5d_neutral.mp3",
+      "amused": "de/d1415e5d_amused.mp3",
+      "angry": "de/d1415e5d_angry.mp3",
+      "disgusted": "de/d1415e5d_disgusted.mp3",
+      "drunk": "de/d1415e5d_drunk.mp3",
+      "sleepy": "de/d1415e5d_sleepy.mp3",
+      "surprised": "de/d1415e5d_surprised.mp3",
+      "whisper": "de/d1415e5d_whisper.mp3"
+     },
+     "file": "de/d1415e5d_neutral.mp3"
+    },
+    {
+     "id": "f7b2f1e2",
+     "text": "Welche Farbe der olympischen Ringe steht für welchen Kontinent?",
+     "emotions": {
+      "neutral": "de/f7b2f1e2_neutral.mp3",
+      "amused": "de/f7b2f1e2_amused.mp3",
+      "angry": "de/f7b2f1e2_angry.mp3",
+      "disgusted": "de/f7b2f1e2_disgusted.mp3",
+      "drunk": "de/f7b2f1e2_drunk.mp3",
+      "sleepy": "de/f7b2f1e2_sleepy.mp3",
+      "surprised": "de/f7b2f1e2_surprised.mp3",
+      "whisper": "de/f7b2f1e2_whisper.mp3"
+     },
+     "file": "de/f7b2f1e2_neutral.mp3"
+    },
+    {
+     "id": "d20ae36c",
+     "text": "Wieso waren in den Achtzigern so viele Menschen drogenabhängig?",
+     "emotions": {
+      "neutral": "de/d20ae36c_neutral.mp3",
+      "amused": "de/d20ae36c_amused.mp3",
+      "angry": "de/d20ae36c_angry.mp3",
+      "disgusted": "de/d20ae36c_disgusted.mp3",
+      "drunk": "de/d20ae36c_drunk.mp3",
+      "sleepy": "de/d20ae36c_sleepy.mp3",
+      "surprised": "de/d20ae36c_surprised.mp3",
+      "whisper": "de/d20ae36c_whisper.mp3"
+     },
+     "file": "de/d20ae36c_neutral.mp3"
+    },
+    {
+     "id": "86d8d7dd",
+     "text": "Das ist die sauberste Männer-Wohngruppe, die ich je gesehen habe!",
+     "emotions": {
+      "neutral": "de/86d8d7dd_neutral.mp3",
+      "amused": "de/86d8d7dd_amused.mp3",
+      "angry": "de/86d8d7dd_angry.mp3",
+      "disgusted": "de/86d8d7dd_disgusted.mp3",
+      "drunk": "de/86d8d7dd_drunk.mp3",
+      "sleepy": "de/86d8d7dd_sleepy.mp3",
+      "surprised": "de/86d8d7dd_surprised.mp3",
+      "whisper": "de/86d8d7dd_whisper.mp3"
+     },
+     "file": "de/86d8d7dd_neutral.mp3"
+    },
+    {
+     "id": "fe3c06d9",
+     "text": "Man sollte eher fragen, wie viele das Geheimnis verstanden haben.",
+     "emotions": {
+      "neutral": "de/fe3c06d9_neutral.mp3",
+      "amused": "de/fe3c06d9_amused.mp3",
+      "angry": "de/fe3c06d9_angry.mp3",
+      "disgusted": "de/fe3c06d9_disgusted.mp3",
+      "drunk": "de/fe3c06d9_drunk.mp3",
+      "sleepy": "de/fe3c06d9_sleepy.mp3",
+      "surprised": "de/fe3c06d9_surprised.mp3",
+      "whisper": "de/fe3c06d9_whisper.mp3"
+     },
+     "file": "de/fe3c06d9_neutral.mp3"
+    },
+    {
+     "id": "c17e076f",
+     "text": "Nun hängt sie vor ihrer Wohnung und kriegt die Haustür nicht auf.",
+     "emotions": {
+      "neutral": "de/c17e076f_neutral.mp3",
+      "amused": "de/c17e076f_amused.mp3",
+      "angry": "de/c17e076f_angry.mp3",
+      "disgusted": "de/c17e076f_disgusted.mp3",
+      "drunk": "de/c17e076f_drunk.mp3",
+      "sleepy": "de/c17e076f_sleepy.mp3",
+      "surprised": "de/c17e076f_surprised.mp3",
+      "whisper": "de/c17e076f_whisper.mp3"
+     },
+     "file": "de/c17e076f_neutral.mp3"
+    },
+    {
+     "id": "72d1dfaa",
+     "text": "Seinen Prinzipien ist er treu geblieben, das muss man anerkennen.",
+     "emotions": {
+      "neutral": "de/72d1dfaa_neutral.mp3",
+      "amused": "de/72d1dfaa_amused.mp3",
+      "angry": "de/72d1dfaa_angry.mp3",
+      "disgusted": "de/72d1dfaa_disgusted.mp3",
+      "drunk": "de/72d1dfaa_drunk.mp3",
+      "sleepy": "de/72d1dfaa_sleepy.mp3",
+      "surprised": "de/72d1dfaa_surprised.mp3",
+      "whisper": "de/72d1dfaa_whisper.mp3"
+     },
+     "file": "de/72d1dfaa_neutral.mp3"
+    },
+    {
+     "id": "120da424",
+     "text": "Und könnten wir einen Exploit entwickeln, um daraus auszubrechen?",
+     "emotions": {
+      "neutral": "de/120da424_neutral.mp3",
+      "amused": "de/120da424_amused.mp3",
+      "angry": "de/120da424_angry.mp3",
+      "disgusted": "de/120da424_disgusted.mp3",
+      "drunk": "de/120da424_drunk.mp3",
+      "sleepy": "de/120da424_sleepy.mp3",
+      "surprised": "de/120da424_surprised.mp3",
+      "whisper": "de/120da424_whisper.mp3"
+     },
+     "file": "de/120da424_neutral.mp3"
+    },
+    {
+     "id": "8873a388",
+     "text": "Was hat Nero wirklich mit der Brandstiftung in Rom zu tun gehabt?",
+     "emotions": {
+      "neutral": "de/8873a388_neutral.mp3",
+      "amused": "de/8873a388_amused.mp3",
+      "angry": "de/8873a388_angry.mp3",
+      "disgusted": "de/8873a388_disgusted.mp3",
+      "drunk": "de/8873a388_drunk.mp3",
+      "sleepy": "de/8873a388_sleepy.mp3",
+      "surprised": "de/8873a388_surprised.mp3",
+      "whisper": "de/8873a388_whisper.mp3"
+     },
+     "file": "de/8873a388_neutral.mp3"
+    },
+    {
+     "id": "ea8ffe25",
+     "text": "Jeder nimmt sich einen Gummiknüppel und dann ab in die Menge damit!",
+     "emotions": {
+      "neutral": "de/ea8ffe25_neutral.mp3",
+      "amused": "de/ea8ffe25_amused.mp3",
+      "angry": "de/ea8ffe25_angry.mp3",
+      "disgusted": "de/ea8ffe25_disgusted.mp3",
+      "drunk": "de/ea8ffe25_drunk.mp3",
+      "sleepy": "de/ea8ffe25_sleepy.mp3",
+      "surprised": "de/ea8ffe25_surprised.mp3",
+      "whisper": "de/ea8ffe25_whisper.mp3"
+     },
+     "file": "de/ea8ffe25_neutral.mp3"
+    },
+    {
+     "id": "eb201839",
+     "text": "Haben wir nicht, kriegen wir nicht, kriegen wir auch nicht wieder rein: so nicht!",
+     "emotions": {
+      "neutral": "de/eb201839_neutral.mp3",
+      "amused": "de/eb201839_amused.mp3",
+      "angry": "de/eb201839_angry.mp3",
+      "disgusted": "de/eb201839_disgusted.mp3",
+      "drunk": "de/eb201839_drunk.mp3",
+      "sleepy": "de/eb201839_sleepy.mp3",
+      "surprised": "de/eb201839_surprised.mp3",
+      "whisper": "de/eb201839_whisper.mp3"
+     },
+     "file": "de/eb201839_neutral.mp3"
+    }
+   ]
+  },
+  {
+   "id": "it",
+   "lang": "it",
+   "rec": "it-IT",
+   "name": "Italian (LibriVox, Pinocchio)",
+   "kind": "plain",
+   "speaker": "adult female reader",
+   "license": "CC0 / public domain",
+   "credit": "LibriVox recording of \"Le avventure di Pinocchio\" by Carlo Collodi; sentence-aligned dataset from the Mozilla Data Collective (LibriVox Italian TTS Female Voice).",
+   "clips": [
+    {
+     "id": "01-10",
+     "text": "Un re! diranno subito i miei piccoli lettori.",
+     "file": "it/01_01069.mp3"
+    },
+    {
+     "id": "01-168",
+     "text": "Appena riebbe l’uso della parola, cominciò a dire tremando e balbettando dallo spavento:",
+     "file": "it/01_16835.mp3"
+    },
+    {
+     "id": "02-15",
+     "text": "In quel punto fu bussato alla porta.",
+     "file": "it/02_01536.mp3"
+    },
+    {
+     "id": "02-85",
+     "text": "Eccomi qui, pronto a servirvi, replicò il falegname rizzandosi su i ginocchi.",
+     "file": "it/02_08522.mp3"
+    },
+    {
+     "id": "03-0",
+     "text": "Geppetto, tornato a casa, comincia subito a fabbricarsi il burattino e gli mette il nome di Pinocchio.",
+     "file": "it/03_00014.mp3"
+    },
+    {
+     "id": "03-140",
+     "text": "Geppetto, per non guastare i fatti suoi, finse di non avvedersene, e continuò a lavorare.",
+     "file": "it/03_14037.mp3"
+    },
+    {
+     "id": "04-44",
+     "text": "Giunto dinanzi a casa, trovò l’uscio di strada socchiuso.",
+     "file": "it/04_04450.mp3"
+    },
+    {
+     "id": "04-167",
+     "text": "Chetati, Grillaccio del mal’augurio! gridò Pinocchio.",
+     "file": "it/04_16752.mp3"
+    },
+    {
+     "id": "05-53",
+     "text": "Immaginatevi come restò. Il suo naso, che era già lungo, gli diventò più lungo almeno quattro dita.",
+     "file": "it/05_05371.mp3"
+    },
+    {
+     "id": "05-115",
+     "text": "Il Grillo-parlante aveva ragione.",
+     "file": "it/05_11562.mp3"
+    },
+    {
+     "id": "06-0",
+     "text": "Pinocchio si addormenta coi piedi sul caldano, e la mattina dopo si sveglia coi piedi tutti bruciati.",
+     "file": "it/06_00089.mp3"
+    },
+    {
+     "id": "06-111",
+     "text": "Fàtti sotto e para il cappello.",
+     "file": "it/06_11111.mp3"
+    },
+    {
+     "id": "07-0",
+     "text": "Geppetto torna a casa, e dà al burattino la colazione che il pover’uomo aveva portata per sè.",
+     "file": "it/07_00042.mp3"
+    },
+    {
+     "id": "07-199",
+     "text": "Queste tre pere erano per la mia colazione: ma io te le do volentieri.",
+     "file": "it/07_19992.mp3"
+    },
+    {
+     "id": "08-0",
+     "text": "Geppetto rifà i piedi a Pinocchio e vende la propria casacca per comprargli l’Abbecedario.",
+     "file": "it/08_00050.mp3"
+    },
+    {
+     "id": "08-100",
+     "text": "Allora Geppetto disse al burattino:",
+     "file": "it/08_10003.mp3"
+    },
+    {
+     "id": "09-0",
+     "text": "Pinocchio vende l’Abbecedario per andare a vedere il teatrino dei burattini.",
+     "file": "it/09_00000.mp3"
+    },
+    {
+     "id": "09-148",
+     "text": "Lo leggerei volentieri, ma per l’appunto oggi non so leggere.",
+     "file": "it/09_14890.mp3"
+    },
+    {
+     "id": "10-14",
+     "text": "Quando Pinocchio entrò nel teatrino delle marionette, accadde un fatto che destò mezza rivoluzione.",
+     "file": "it/10_01490.mp3"
+    },
+    {
+     "id": "10-165",
+     "text": "Allora uscì fuori il burattinaio, un omone così brutto, che metteva paura soltanto a guardarlo.",
+     "file": "it/10_16514.mp3"
+    },
+    {
+     "id": "11-61",
+     "text": "Buone nuove, fratello.",
+     "file": "it/11_06153.mp3"
+    },
+    {
+     "id": "11-189",
+     "text": "Io voglio che il mio montone sia arrostito bene!",
+     "file": "it/11_18902.mp3"
+    },
+    {
+     "id": "12-12",
+     "text": "Il giorno dipoi Mangiafoco chiamò in disparte Pinocchio e gli domandò:",
+     "file": "it/12_01225.mp3"
+    },
+    {
+     "id": "12-235",
+     "text": "Erano giunti più che a mezza strada, quando la Volpe, fermandosi di punto in bianco, disse al burattino:",
+     "file": "it/12_23543.mp3"
+    },
+    {
+     "id": "13-0",
+     "text": "L’osteria del «Gambero Rosso».",
+     "file": "it/13_00024.mp3"
+    },
+    {
+     "id": "13-188",
+     "text": "Che vi pare? Quelle lì sono persone troppo educate, perchè facciano un affronto simile alla signoria vostra.",
+     "file": "it/13_18830.mp3"
+    },
+    {
+     "id": "14-0",
+     "text": "Pinocchio, per non aver dato retta ai buoni consigli del Grillo-parlante, s’imbatte negli assassini.",
+     "file": "it/14_00020.mp3"
+    },
+    {
+     "id": "14-173",
+     "text": "E dopo ammazzato te, ammazzeremo anche tuo padre!",
+     "file": "it/14_17372.mp3"
+    },
+    {
+     "id": "15-0",
+     "text": "Gli assassini inseguono Pinocchio; e dopo averlo raggiunto lo impiccano a un ramo della Quercia grande.",
+     "file": "it/15_00006.mp3"
+    },
+    {
+     "id": "15-95",
+     "text": "Morta? e allora che cosa fai costì alla finestra?",
+     "file": "it/15_09591.mp3"
+    },
+    {
+     "id": "16-66",
+     "text": "Vedi tu quel burattino attaccato penzoloni a un ramo della Quercia grande?",
+     "file": "it/16_06661.mp3"
+    },
+    {
+     "id": "16-293",
+     "text": "E lei non dice nulla? domandò la Fata al Grillo-parlante.",
+     "file": "it/16_29371.mp3"
+    },
+    {
+     "id": "17-7",
+     "text": "Poi dice una bugia e per gastigo gli cresce il naso.",
+     "file": "it/17_00797.mp3"
+    },
+    {
+     "id": "17-136",
+     "text": "La Fata andò, e chiuse l’uscio di camera.",
+     "file": "it/17_13648.mp3"
+    },
+    {
+     "id": "18-0",
+     "text": "Pinocchio ritrova la Volpe e il Gatto, e va con loro a seminare le quattro monete nel Campo dei miracoli.",
+     "file": "it/18_00012.mp3"
+    },
+    {
+     "id": "18-187",
+     "text": "Che cosa hai fatto del tuo zampetto? ―",
+     "file": "it/18_18794.mp3"
+    },
+    {
+     "id": "19-0",
+     "text": "Pinocchio è derubato delle sue monete d’oro e, per gastigo si busca quattro mesi di prigione.",
+     "file": "it/19_00032.mp3"
+    },
+    {
+     "id": "19-137",
+     "text": "Insomma, gridò Pinocchio, arrabbiandosi, si può sapere, Pappagallo mal educato, di che cosa ridi?",
+     "file": "it/19_13751.mp3"
+    },
+    {
+     "id": "20-10",
+     "text": "Figuratevi l’allegrezza di Pinocchio, quando si sentì libero.",
+     "file": "it/20_01028.mp3"
+    },
+    {
+     "id": "20-109",
+     "text": "Nel tempo che diceva così, si fermò tutt’a un tratto spaventato e fece quattro passi indietro.",
+     "file": "it/20_10972.mp3"
+    },
+    {
+     "id": "21-0",
+     "text": "Pinocchio è preso da un contadino, il quale lo costringe a far da can da guardia a un pollaio.",
+     "file": "it/21_00011.mp3"
+    },
+    {
+     "id": "21-115",
+     "text": "Io sono entrato nel campo per prendere soltanto due grappoli d’uva!",
+     "file": "it/21_11562.mp3"
+    },
+    {
+     "id": "22-0",
+     "text": "Pinocchio scuopre i ladri, e in ricompensa di essere stato fedele vien posto in libertà.",
+     "file": "it/22_00047.mp3"
+    },
+    {
+     "id": "22-113",
+     "text": "E Melampo faceva proprio così? domandò Pinocchio.",
+     "file": "it/22_11319.mp3"
+    },
+    {
+     "id": "23-83",
+     "text": "Come rimanesse il burattino, quand’ebbe compitate alla peggio quelle parole, lo lascio pensare a voi.",
+     "file": "it/23_08303.mp3"
+    },
+    {
+     "id": "23-255",
+     "text": "Mille chilometri? O Colombo mio, che bella cosa potessi avere le tue ali!…",
+     "file": "it/23_25512.mp3"
+    },
+    {
+     "id": "24-0",
+     "text": "Pinocchio arriva all’isola delle «Api industriose» e ritrova la Fata.",
+     "file": "it/24_00012.mp3"
+    },
+    {
+     "id": "24-403",
+     "text": "Volentieri; vieni con me a portar calcina, rispose il muratore e invece d’un soldo, te ne darò cinque.",
+     "file": "it/24_40345.mp3"
+    },
+    {
+     "id": "25-22",
+     "text": "Birba d’un burattino! Come mai ti sei accorto che ero io?",
+     "file": "it/25_02260.mp3"
+    },
+    {
+     "id": "25-136",
+     "text": "Credo di sì: anzi ne sono sicura.",
+     "file": "it/25_13600.mp3"
+    },
+    {
+     "id": "26-0",
+     "text": "Pinocchio va co’ suoi compagni di scuola in riva al mare, per vedere il terribile Pesce-cane.",
+     "file": "it/26_00012.mp3"
+    },
+    {
+     "id": "26-184",
+     "text": "Che t’importa della scuola? Alla scuola ci anderemo domani.",
+     "file": "it/26_18416.mp3"
+    },
+    {
+     "id": "27-19",
+     "text": "Il mare era tutto liscio come un gran cristallo da specchio.",
+     "file": "it/27_01961.mp3"
+    },
+    {
+     "id": "27-295",
+     "text": "Anzi, quella birba di Pinocchio, voltandosi indietro a guardarlo in cagnesco, gli disse sgarbatamente:",
+     "file": "it/27_29585.mp3"
+    },
+    {
+     "id": "28-0",
+     "text": "Pinocchio corre pericolo di essere fritto in padella, come un pesce.",
+     "file": "it/28_00014.mp3"
+    },
+    {
+     "id": "28-289",
+     "text": "Buone queste triglie! disse, guardandole e annusandole con compiacenza.",
+     "file": "it/28_28933.mp3"
+    },
+    {
+     "id": "29-7",
+     "text": "Gran colazione di caffè-e-latte per festeggiare questo grande avvenimento.",
+     "file": "it/29_00766.mp3"
+    },
+    {
+     "id": "29-409",
+     "text": "La Fata è in casa? domandò il burattino.",
+     "file": "it/29_40913.mp3"
+    },
+    {
+     "id": "30-25",
+     "text": "Fra un’ora prometto di essere bell’ e ritornato replicò il burattino.",
+     "file": "it/30_02568.mp3"
+    },
+    {
+     "id": "30-293",
+     "text": "Quando avrà gridato ben bene, si cheterà disse quella birba di Lucignolo.",
+     "file": "it/30_29371.mp3"
+    }
+   ]
+  },
+  {
+   "id": "cs",
+   "lang": "cs",
+   "rec": "cs-CZ",
+   "name": "Czech (LibriVox, Krysař)",
+   "kind": "plain",
+   "speaker": "adult female reader",
+   "license": "CC0 / public domain",
+   "credit": "LibriVox recording of \"Krysař\" by Viktor Dyk; sentence-aligned dataset from the Mozilla Data Collective (LibriVox Czech TTS Female Voice).",
+   "clips": [
+    {
+     "id": "01-0",
+     "text": "I A vaše jméno? Nejmenuji se; jsem nikdo",
+     "file": "cs/01_00000.mp3"
+    },
+    {
+     "id": "01-164",
+     "text": "Ţena mlčela, pohrávajíc si větvičkou jasmínu",
+     "file": "cs/01_16461.mp3"
+    },
+    {
+     "id": "01-327",
+     "text": "Líbíte se mi, krysaři, děla",
+     "file": "cs/01_32704.mp3"
+    },
+    {
+     "id": "02-1",
+     "text": "Byl to kout v dobrém hansovním městě Hammeln, kout tichý a opuštěný, skoro jako by města nebylo",
+     "file": "cs/02_00115.mp3"
+    },
+    {
+     "id": "02-44",
+     "text": "V zahradě bylo tolik vůní, z nichţ kterákoli dovedla opojovat",
+     "file": "cs/02_04419.mp3"
+    },
+    {
+     "id": "02-80",
+     "text": "Ale Agnes nezdálo se nic lekat, hleděla s důvěřivým úsměvem do příštích dnů",
+     "file": "cs/02_08056.mp3"
+    },
+    {
+     "id": "03-0",
+     "text": "Sepp Jörgen, rybář, bydlil na břehu Vesery tam, kde se sbíhala s Havolou",
+     "file": "cs/03_00049.mp3"
+    },
+    {
+     "id": "03-47",
+     "text": "Chápal, ţe se rodí někteří k štěstí a jiní ke strastem",
+     "file": "cs/03_04741.mp3"
+    },
+    {
+     "id": "03-94",
+     "text": "A tak odcházeli klidně muţi, kdyţ ho uráţeli, a ţeny, které by byl mohl milovat, mizely v dáli",
+     "file": "cs/03_09492.mp3"
+    },
+    {
+     "id": "04-7",
+     "text": "Měl všechno, co můţe míti občan v Hammeln: počestné rodiče a zachovalé jméno a úctu k radnici a kostelu",
+     "file": "cs/04_00738.mp3"
+    },
+    {
+     "id": "04-22",
+     "text": "A jeţto strýc Kristiánův byl bezdětek, kojil se Kristián nadějí, ţe se stane dědicem",
+     "file": "cs/04_02227.mp3"
+    },
+    {
+     "id": "04-52",
+     "text": "A tak kolísal Kristián mezi úzkostí a nadějí",
+     "file": "cs/04_05282.mp3"
+    },
+    {
+     "id": "05-8",
+     "text": "V neděli opouštějí měšťané brány města a svátečně vyšňořeni stoupají na Koppel",
+     "file": "cs/05_00856.mp3"
+    },
+    {
+     "id": "05-64",
+     "text": "Neboť, kdybyste kráčeli dále, dojdete k propasti",
+     "file": "cs/05_06414.mp3"
+    },
+    {
+     "id": "05-99",
+     "text": "Ale říkají tak, nevědouce, od koho to slyšeli",
+     "file": "cs/05_09978.mp3"
+    },
+    {
+     "id": "06-0",
+     "text": "Onoho dne leţel Sepp Jörgen na palouku poblíţ své chaty, hlavu maje opřenu o kupu sena",
+     "file": "cs/06_00035.mp3"
+    },
+    {
+     "id": "06-75",
+     "text": "A přece ruce Kätchen nebyly ani chladné, ani ošklivé",
+     "file": "cs/06_07522.mp3"
+    },
+    {
+     "id": "06-145",
+     "text": "A jistěţe málokdo by se mu mohl silou rovnat",
+     "file": "cs/06_14516.mp3"
+    },
+    {
+     "id": "07-5",
+     "text": "Ponocný minul starou, pamětihodnou kašnu, pýchu Hammelnských, kašnu s Neptunem a tritony",
+     "file": "cs/07_00585.mp3"
+    },
+    {
+     "id": "07-135",
+     "text": "Je zbytečno říkat vám to, poněvadţ o tom příliš dobře víte",
+     "file": "cs/07_13550.mp3"
+    },
+    {
+     "id": "07-271",
+     "text": "Tvá Kätchen a tvá Lora tě neuslyší",
+     "file": "cs/07_27125.mp3"
+    },
+    {
+     "id": "08-0",
+     "text": "V neděli, po slavné mši, bylo ţivo a rušno v hospodě U ţíznivého člověka",
+     "file": "cs/08_00048.mp3"
+    },
+    {
+     "id": "08-275",
+     "text": "Opodál stolu konšelského seděl krysař",
+     "file": "cs/08_27500.mp3"
+    },
+    {
+     "id": "08-457",
+     "text": "Ale Frosch a Strumm nebyli lidé, které by bylo tak lehko zmásti",
+     "file": "cs/08_45709.mp3"
+    },
+    {
+     "id": "09-3",
+     "text": "S rozšířenými zornicemi hleděla na něho Agnes",
+     "file": "cs/09_00391.mp3"
+    },
+    {
+     "id": "09-74",
+     "text": "Bála se a milovala svou bázeň",
+     "file": "cs/09_07416.mp3"
+    },
+    {
+     "id": "09-143",
+     "text": "Vše, čím se zabýval před okamţikem, vše, co trudilo jeho mysl, připadalo mu malicherným a prázdným",
+     "file": "cs/09_14365.mp3"
+    },
+    {
+     "id": "10-1",
+     "text": "Ta noc v Hammeln byla prapodivná noc",
+     "file": "cs/10_00110.mp3"
+    },
+    {
+     "id": "10-116",
+     "text": "Tisíc rakví, zasyčel krysař",
+     "file": "cs/10_11685.mp3"
+    },
+    {
+     "id": "10-204",
+     "text": "Kdo můţe říci, ţe bych byl nedostál slovu? Ale krysař se usmíval",
+     "file": "cs/10_20452.mp3"
+    },
+    {
+     "id": "11-5",
+     "text": "Ale nevysvětlitelný neklid nedal spáti krysaři",
+     "file": "cs/11_00535.mp3"
+    },
+    {
+     "id": "11-131",
+     "text": "Kdo přijde, aby ho oloupil? Kdy a kudy přijde? Krysař prošel mnoha městy a mnoha zeměmi",
+     "file": "cs/11_13188.mp3"
+    },
+    {
+     "id": "11-271",
+     "text": "A také vlastní srdce bylo čisté a jasné",
+     "file": "cs/11_27192.mp3"
+    },
+    {
+     "id": "12-2",
+     "text": "Příchozí patřil zamračeně na krysaře",
+     "file": "cs/12_00224.mp3"
+    },
+    {
+     "id": "12-47",
+     "text": "Ani rys se nepohnul v tváři krysařově",
+     "file": "cs/12_04704.mp3"
+    },
+    {
+     "id": "12-139",
+     "text": "Ale radím vám, příteli, mějte pozor na mou píšťalu",
+     "file": "cs/12_13991.mp3"
+    },
+    {
+     "id": "13-3",
+     "text": "Setkání ranní bylo jen mrak, který pluje a rozptýlí se",
+     "file": "cs/13_00396.mp3"
+    },
+    {
+     "id": "13-134",
+     "text": "Na místě, kde byl obraz, stal se dávno, dávno zločin",
+     "file": "cs/13_13413.mp3"
+    },
+    {
+     "id": "13-215",
+     "text": "Budu krásnější, slibovala budoucnost",
+     "file": "cs/13_21537.mp3"
+    },
+    {
+     "id": "14-2",
+     "text": "Neklid vypudil ho ze zdí města; ale mnohem dotěrněji ho tam vracel",
+     "file": "cs/14_00287.mp3"
+    },
+    {
+     "id": "14-86",
+     "text": "Byl Jörgen unaven? Vzdal se zápasu? I Krysař šel",
+     "file": "cs/14_08650.mp3"
+    },
+    {
+     "id": "14-255",
+     "text": "Rychleji, rychleji kráčí krysař",
+     "file": "cs/14_25582.mp3"
+    },
+    {
+     "id": "15-0",
+     "text": "Od poslední návštěvy krysařovy U ţíznivého člověka uplynula řada dní",
+     "file": "cs/15_00062.mp3"
+    },
+    {
+     "id": "15-78",
+     "text": "Včera se báli; a dnes chodili Bonifác Strumm a Gottlieb Frosch klidně pod podloubím náměstí",
+     "file": "cs/15_07870.mp3"
+    },
+    {
+     "id": "15-137",
+     "text": "Smál se to ďábel nahoře? Krysař nebyl pověrčivý ani zbabělec; zahleděl se nahoru a nesklonil svého zraku",
+     "file": "cs/15_13710.mp3"
+    },
+    {
+     "id": "16-0",
+     "text": "U ţíznivého člověka bylo pusto",
+     "file": "cs/16_00062.mp3"
+    },
+    {
+     "id": "16-198",
+     "text": "Kdyţ se tak stalo, nalil svou sklenici aţ po kraj a vyprázdnil ji jedním douškem",
+     "file": "cs/16_19829.mp3"
+    },
+    {
+     "id": "16-439",
+     "text": "Zamumlal opět svou formulku, hledě na Černou Lízu, která se svíjela bujným smíchem",
+     "file": "cs/16_43920.mp3"
+    },
+    {
+     "id": "17-0",
+     "text": "Stála ve dveřích, jako tenkráte, kdyţ krysař lehké mysli a lehkého srdce vstupoval do města Hammeln",
+     "file": "cs/17_00035.mp3"
+    },
+    {
+     "id": "17-129",
+     "text": "Krysaři , zašeptla ta, kterou měl v náručí",
+     "file": "cs/17_12912.mp3"
+    },
+    {
+     "id": "17-218",
+     "text": "Nebránila se, poněvadţ nebylo moţno se ubrániti",
+     "file": "cs/17_21806.mp3"
+    },
+    {
+     "id": "18-3",
+     "text": "Krysař donesl Agnes na blízké loţe",
+     "file": "cs/18_00313.mp3"
+    },
+    {
+     "id": "18-164",
+     "text": "Chtěl odvrátit zrak, a nebylo lze ho odloučiti od propasti této zoufalosti",
+     "file": "cs/18_16454.mp3"
+    },
+    {
+     "id": "18-321",
+     "text": "příliš vhod dlouhému Kristiánu",
+     "file": "cs/18_32155.mp3"
+    },
+    {
+     "id": "19-0",
+     "text": "Jsi smutná, Agnes, pravila matka",
+     "file": "cs/19_00040.mp3"
+    },
+    {
+     "id": "19-94",
+     "text": "Vystupte na Koppel; v propasti, která se tam otvírá, je brána do Sedmihrad",
+     "file": "cs/19_09457.mp3"
+    },
+    {
+     "id": "19-158",
+     "text": "Je to země jasu, je to jiný svět",
+     "file": "cs/19_15829.mp3"
+    },
+    {
+     "id": "20-0",
+     "text": "Řeka je časem jako přítel, který uklidňuje a těší",
+     "file": "cs/20_00048.mp3"
+    },
+    {
+     "id": "20-47",
+     "text": "Vystoupí náhle z břehů, zaplaví kraj a strhá střechy a domky",
+     "file": "cs/20_04728.mp3"
+    },
+    {
+     "id": "20-77",
+     "text": "Usedne na břehu a dlouho pozoruje vody",
+     "file": "cs/20_07745.mp3"
+    }
+   ]
+  },
+  {
+   "id": "ckb",
+   "lang": "ckb",
+   "rec": "ckb-IQ",
+   "name": "Central Kurdish (Sorani, Mariwan accent)",
+   "kind": "plain",
+   "speaker": "Aso Mahmudi, adult male, Mariwan",
+   "license": "CC-BY-4.0",
+   "credit": "Central Kurdish TTS dataset 1.0 (Mozilla Data Collective, University of Melbourne). Speaker: Aso Mahmudi.",
+   "clips": [
+    {
+     "id": "a0003",
+     "text": "ئامێرەکە ئەگەری ئامادەنەبوونی مێسی لە هەندێک یاریی کەم دەکاتەوە و لە پێکان دەیپارێزێت.",
+     "file": "ckb/a0003.mp3"
+    },
+    {
+     "id": "a0057",
+     "text": "نیک لیتالیەڵس، پسپۆڕی خەوتن سەرپەرشتی بەڕێوەبردنی خەوی دەکات.",
+     "file": "ckb/a0057.mp3"
+    },
+    {
+     "id": "a0113",
+     "text": "بە بڕوای ئەحمەد هەموو شتێک بەباشی دەڕۆشت بەڕێوە.",
+     "file": "ckb/a0113.mp3"
+    },
+    {
+     "id": "a0132",
+     "text": "بەداخەوە، عادل ڕازی نەبوو یارمەتیمان بدات.",
+     "file": "ckb/a0132.mp3"
+    },
+    {
+     "id": "a0153",
+     "text": "بەرزاییەکانی ئەم پارکە دیمەنێکی جوان و دڵڕفێن لە شار دەخاتە بەرچاو.",
+     "file": "ckb/a0153.mp3"
+    },
+    {
+     "id": "a0170",
+     "text": "بەهای نەوت جێگەی باوەڕ نییە!",
+     "file": "ckb/a0170.mp3"
+    },
+    {
+     "id": "a0190",
+     "text": "بەشداریی کەناڵە ئەلیکترۆنییەکانی ستاک بکە بۆ قسەکردن لەگەڵ کارمەندەکانت دەربارەی کاری دابەشکراو.",
+     "file": "ckb/a0190.mp3"
+    },
+    {
+     "id": "a0209",
+     "text": "توێژینەوە لەسەر ڤاکسین یان دەرمانی تایبەتی دژەڤایرۆس لەژێر تاقیکردنەوەدان.",
+     "file": "ckb/a0209.mp3"
+    },
+    {
+     "id": "a0227",
+     "text": "تەنانەت بەهەشتیش دەتوانێت شوێنێکی خۆش بێت بۆ ژیان کاتێک خووی پێ دەگری.",
+     "file": "ckb/a0227.mp3"
+    },
+    {
+     "id": "a0246",
+     "text": "خانی ڕووداوەکانی ناو داستانەکەی بە هۆنراوە داڕشتەوە.",
+     "file": "ckb/a0246.mp3"
+    },
+    {
+     "id": "a0264",
+     "text": "دەڵێن شام شەکرە، وڵات شیرینترە!",
+     "file": "ckb/a0264.mp3"
+    },
+    {
+     "id": "a0300",
+     "text": "وەک زۆربەی پرۆژە هونەرییەکانی دیکە، ڤایرۆسی کۆرۆنا، کاریگەری لەسەر بەرهەمهێنانی ئەم بەرهەمەش هەبووە.",
+     "file": "ckb/a0300.mp3"
+    },
+    {
+     "id": "a0332",
+     "text": "ئەو فیلمانەی بەشدارییان کردووە باس لە تیرۆر دەکەن لەگەڵ شێوازەکانی ڕووبەڕووبوونەوەیان.",
+     "file": "ckb/a0332.mp3"
+    },
+    {
+     "id": "a0376",
+     "text": "کات بەسەربردن لەگەڵ خێزانەکەی و کەمبوونەی ئەو کاتەی لە هۆڵە وەرزشییەکاندا بەسەری دەبرد.",
+     "file": "ckb/a0376.mp3"
+    },
+    {
+     "id": "a0412",
+     "text": "هەرچەندە دەزانین قۆناخی دووەم سەختە، پەنا بە خوا، هەوڵی سەرکەوتن دەدەین.",
+     "file": "ckb/a0412.mp3"
+    },
+    {
+     "id": "a0444",
+     "text": "هەر جارێکیش بە بیرت هاتەوە دەبێت خۆت دڵنیا کەیت کە بەیانی کاتی تەواوت هەیە بۆ بیرکردنەوە لێی.",
+     "file": "ckb/a0444.mp3"
+    },
+    {
+     "id": "a0478",
+     "text": "پێویستی بوو شوێنپێی خۆی پاک بکاتەوە لەو هەموو ئەو خوێنەی کە تا ئەژنۆکان هاتبوون.",
+     "file": "ckb/a0478.mp3"
+    },
+    {
+     "id": "a0515",
+     "text": "فشاری خوێن بە ڕێژەیەکی بەرچاو دادەبەزێنێت، بەوەش ئەگەری تووشبوون بە نەخۆشییەکانی دڵ کەم دەبێتەوە.",
+     "file": "ckb/a0515.mp3"
+    },
+    {
+     "id": "a0539",
+     "text": "بەڵام ڕێژەکە لای ژنان کەمترە بۆیە گەشەی موو لای ڕەگەزی نێر خێرا و زۆر و بە پێچەوانەی ڕەگەزی مێوەیە.",
+     "file": "ckb/a0539.mp3"
+    },
+    {
+     "id": "a0563",
+     "text": "بەڵام بەخت یاوەری نەبوو؛ بە چوار کۆمەڵەی بێبەرامبەر دۆڕا و ماڵئاوایی لە ئۆڵومپیاد کرد.",
+     "file": "ckb/a0563.mp3"
+    },
+    {
+     "id": "a0597",
+     "text": "وەکوو: زاراو، زاراوە، زاراوا، شێوە، بەش، بن، خوار، نیمچە، لەهجە، دیالێکت.",
+     "file": "ckb/a0597.mp3"
+    },
+    {
+     "id": "a0622",
+     "text": "تاوەکوو ساڵی دوو هەزار و چل، چاوەڕوان دەکرێت بگاتە پەنجا ملیار دۆلار.",
+     "file": "ckb/a0622.mp3"
+    },
+    {
+     "id": "a0650",
+     "text": "داخەکەم وێنەکە ئەوەندە کۆن بوو، ئەگەر بەوردی سەرنجی نەدرابا نەدەزاندرا وێنەی چییە.",
+     "file": "ckb/a0650.mp3"
+    },
+    {
+     "id": "a0678",
+     "text": "بایی عانەیەک دۆندرمەم دەخوارد و بایی دوو عانەش بەفرم دەکڕی و بە دەست هەڵم دەگرت.",
+     "file": "ckb/a0678.mp3"
+    },
+    {
+     "id": "a0707",
+     "text": "بۆ چی هەوڵت نەدا بۆ کارەکەت؟",
+     "file": "ckb/a0707.mp3"
+    },
+    {
+     "id": "a0730",
+     "text": "توخوا چەند جوان و سەرنجڕاکێشە ئەم دیمەنە بەهارییە!",
+     "file": "ckb/a0730.mp3"
+    },
+    {
+     "id": "a0750",
+     "text": "ئایا تۆ دڵنیای لەوەی کە ئەنجامی دەدەی؟",
+     "file": "ckb/a0750.mp3"
+    },
+    {
+     "id": "a0775",
+     "text": "سەیرانگای بێخاڵ چەند خۆشە! شاخی قەندیل چەند بەرزە!",
+     "file": "ckb/a0775.mp3"
+    },
+    {
+     "id": "a0793",
+     "text": "ئەمشەو چەند کاتژمێر نووستی؟ هیچ خەونت بینی؟",
+     "file": "ckb/a0793.mp3"
+    },
+    {
+     "id": "a0813",
+     "text": "تۆ ئەو ئەرکەت کردووە کە لەسەرت پێویست بوو؟",
+     "file": "ckb/a0813.mp3"
+    },
+    {
+     "id": "a0831",
+     "text": "ڕۆڵە سەر سوودی چییە؟ بۆ بەردەبازی ڕێی ئازادییە!",
+     "file": "ckb/a0831.mp3"
+    },
+    {
+     "id": "a0855",
+     "text": "عەلی بەردەشانی، شاعیری میللی، مێژوونووسی ڕاپەڕینەکانی عەبدوڕڕەحمان پاشا بووە بە شیعر.",
+     "file": "ckb/a0855.mp3"
+    },
+    {
+     "id": "b0046",
+     "text": "ئەم زانستە بەتایبەتی باس لەو گۆڕانانە دەکا کە بەسەر وشەدا دێ لە کاتی گەردانکردن و بزواندنیاندا.",
+     "file": "ckb/b0046.mp3"
+    },
+    {
+     "id": "b0068",
+     "text": "تەنانەت نازانێ کێی لەگەڵ بووە.",
+     "file": "ckb/b0068.mp3"
+    },
+    {
+     "id": "b0093",
+     "text": "بە سەرسامییەوە  ئاهێکی هەڵکێشا.",
+     "file": "ckb/b0093.mp3"
+    },
+    {
+     "id": "b0115",
+     "text": "بە پێی دەستوور، دەبووایە دەرگاکەی کردبایەوە و ڕۆیشتبایە ژوورەوە، بەڵام هەروا لە جێی خۆیەوە ڕامابوو.",
+     "file": "ckb/b0115.mp3"
+    },
+    {
+     "id": "b0134",
+     "text": "خەوی سووک بوو و هەمیشە خەونی ناخۆشی دەدیت.",
+     "file": "ckb/b0134.mp3"
+    },
+    {
+     "id": "mc018",
+     "text": "سێویان خوارد. لەپاش موددەتێکی زۆر خوا ئەولایەکی دانێ و ماینەکەی جوانوو ئەسپێکی بوو.",
+     "file": "ckb/mc018.mp3"
+    },
+    {
+     "id": "mw016",
+     "text": "کۆنە ئاشنایەکی باوکی ڕەحمەتیم، ڕۆژێ ڕەحمی تلیسایەوە بەرامبەر بەم وەزعە ناخۆشەی من.",
+     "file": "ckb/mw016.mp3"
+    },
+    {
+     "id": "mw046",
+     "text": "مەسەلا ڕۆژێ حوکمی لە وەستام کرد و وتی:",
+     "file": "ckb/mw046.mp3"
+    },
+    {
+     "id": "mw076",
+     "text": "ئێمە کاسبین، هەقمان بەسەر خوێندنەوە چییە؟",
+     "file": "ckb/mw076.mp3"
+    },
+    {
+     "id": "mw100",
+     "text": "برادەر، ئەمە کە بەحسی ئینسانییەت و ویژدان کردنە، لێرە پارە ناکات!",
+     "file": "ckb/mw100.mp3"
+    },
+    {
+     "id": "mw130",
+     "text": "چونکە ئێوە عمووم ئاشنای قەدیمی منن.",
+     "file": "ckb/mw130.mp3"
+    },
+    {
+     "id": "mw159",
+     "text": "منیش لە گۆشەیەکەوە دانیشتبووم تا خەڵق ڕۆیشت.",
+     "file": "ckb/mw159.mp3"
+    },
+    {
+     "id": "mw184",
+     "text": "چونکە ئەو تەدبیرچییە هەر چی ئارەزووی خۆی بووایە ئەوەندەی بۆ ئاغام پارە ئەناردەوە.",
+     "file": "ckb/mw184.mp3"
+    },
+    {
+     "id": "mw202",
+     "text": "موازەنەم کرد، لە لای ئەو دانیشتن بۆ من فائیدەی نییە.",
+     "file": "ckb/mw202.mp3"
+    },
+    {
+     "id": "mw225",
+     "text": "بۆی مەعلووم بوو کە مەسئەلەی ئیستدعاکە لەجیاتی ئەوەی کە بنووسم:",
+     "file": "ckb/mw225.mp3"
+    },
+    {
+     "id": "mw247",
+     "text": "فەورەن دوو سێ حازر بوون، وتی:",
+     "file": "ckb/mw247.mp3"
+    },
+    {
+     "id": "mw274",
+     "text": "خۆم پێ نەگیرا لە قۆمیسەرم پرسی:",
+     "file": "ckb/mw274.mp3"
+    },
+    {
+     "id": "mw300",
+     "text": "کابرا جوابی دامەوە و وتی:",
+     "file": "ckb/mw300.mp3"
+    },
+    {
+     "id": "mw329",
+     "text": "قوربان بۆ چی دەستت نەشۆرد؟",
+     "file": "ckb/mw329.mp3"
+    },
+    {
+     "id": "mw356",
+     "text": "فائیدەی نەبوو، هەر کەس ئەهات بە چەپۆک پێیدا ئەماڵیم، بەبێ سوئال یاخو تەحقیقات.",
+     "file": "ckb/mw356.mp3"
+    },
+    {
+     "id": "mw378",
+     "text": "ئەمجا دەست لە من و قووەت لە خودا، دەستم کرد بە ئەهالی ڕووتاندنەوە.",
+     "file": "ckb/mw378.mp3"
+    },
+    {
+     "id": "mw406",
+     "text": "ئەگەرچی هیچی تێدا بە سەر نەبوو، موداخەلەی ئەوانی نەکرد.",
+     "file": "ckb/mw406.mp3"
+    },
+    {
+     "id": "mw439",
+     "text": "لەپاش چەند ڕۆژ مانەوەم، هەر چی عادەت و سیاسەتی ئەو بوو بەکوللی تەغەیورم کرد.",
+     "file": "ckb/mw439.mp3"
+    },
+    {
+     "id": "mw465",
+     "text": "تاقمێ بەنگکێش هەر لە خۆیانەوە پێ ئەکەنین.",
+     "file": "ckb/mw465.mp3"
+    },
+    {
+     "id": "mw487",
+     "text": "ئەڵبەتە شتێک کە عەقڵ زایل بکا نەتیجەی هەر وەها ئەبێت.",
+     "file": "ckb/mw487.mp3"
+    },
+    {
+     "id": "mw518",
+     "text": "جا لەبەر ئەمانە من ناتوانم بێم بۆ ماڵی ئێوە!",
+     "file": "ckb/mw518.mp3"
+    },
+    {
+     "id": "mw554",
+     "text": "سبحەینێیەک کە چووم بۆ دائیرە، لە ناو کۆڵانێکدا دوو منداڵم دی، کە بە یەکەوە یارییان ئەکرد.",
+     "file": "ckb/mw554.mp3"
+    },
+    {
+     "id": "mw588",
+     "text": "وە بەغەیرەز ئەم زاتە، کابرایەکیان وتی: من زەم ئەکەم!",
+     "file": "ckb/mw588.mp3"
+    }
+   ]
+  },
+  {
+   "id": "oto",
+   "lang": "oto",
+   "rec": "",
+   "name": "Otomí (Hñähñu)",
+   "kind": "plain",
+   "speaker": "adult male reader",
+   "license": "CC-BY-SA-4.0 (share-alike)",
+   "credit": "Otomí (Hñähñu) TTS, male voice (Mozilla Data Collective). Attribution and share-alike apply to these recordings.",
+   "clips": [
+    {
+     "id": "2f397ed7e0",
+     "text": "Xki hats'i, xki dee,",
+     "file": "oto/2f397ed7e0.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "e142b27d0a",
+     "text": "njabu̱ di ne dá̤ fengägi ko n'a rä johya, hingä ko n'a rä dumu̱i.",
+     "file": "oto/e142b27d0a.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "f09fc84c9b",
+     "text": "nu'bu̱ ja ri zi paha ne ri zi hmäte,",
+     "file": "oto/f09fc84c9b.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "b404619594",
+     "text": "ha rä nge'ä nu'bu̱ n'a rä pa gá̤ ma, 'yo̱xu̱ nuya yä noya ma gá̤ xi'ä'ihu̱:",
+     "file": "oto/b404619594.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "9a3ed5fe51",
+     "text": "ga'tho ge'u̱ xä t'ütkägi stä tsiga'u̱ ndrä notsi.",
+     "file": "oto/9a3ed5fe51.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "a4066a8d47",
+     "text": "ne gá̤ hüdi gá̤ o̱xu̱ rá̤ hñani rä zi dehe.",
+     "file": "oto/a4066a8d47.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "6139af6284",
+     "text": "Nu'bu̱ ja ri te ne ri nzaki.",
+     "file": "oto/6139af6284.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "0a326af93d",
+     "text": "¡Xi mä hotho nunä rä zi nsunda te!",
+     "file": "oto/0a326af93d.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "bc81b189d0",
+     "text": "gi zokägi ne gi xikägi zi njante ha mä gu…",
+     "file": "oto/bc81b189d0.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "7fb36d631b",
+     "text": "Xki deju'ä ga'tho'ihu̱",
+     "file": "oto/7fb36d631b.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "da80fe15c8",
+     "text": "fu̱di gi tso ri noya, fu̱di gi tso ri ts'ote, fu̱di gi tso ri mfädi,",
+     "file": "oto/da80fe15c8.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "8ae034c58f",
+     "text": "Di hongä mä juaxi gá̤ xit'ä mä dehe.",
+     "file": "oto/8ae034c58f.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "4c0d1851d7",
+     "text": "Nubye̱ tso̱ho̱ ndunthi yä nt'ani ha mä mfeni ne di 'ñanise̱:",
+     "file": "oto/4c0d1851d7.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "3df72f75af",
+     "text": "Nubye̱ ya di 'me̱di rä t'ek'ei, rä nze̱nguate, rä mfaste, rä hmihi.",
+     "file": "oto/3df72f75af.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "3798016a00",
+     "text": "Ndunthi yä zi jä'i xä 'yangägi.",
+     "file": "oto/3798016a00.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "0db36c8b0c",
+     "text": "ne ga'tä nu'ä di thogi n'apa ngu n'apa.",
+     "file": "oto/0db36c8b0c.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "abab05986d",
+     "text": "di ne dá̤ duxkägi rä zi ndähi,",
+     "file": "oto/abab05986d.mp3",
+     "note": "dí jamädi rä te"
+    },
+    {
+     "id": "2c4e5baf4a",
+     "text": "2c4e5baf4a58145151222490e530dfb0",
+     "file": "oto/2c4e5baf4a.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "2269c4aae2",
+     "text": "2269c4aae2988250321c1feaf71df4c0",
+     "file": "oto/2269c4aae2.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "13be564d37",
+     "text": "13be564d37173756da35c3bdc0706644",
+     "file": "oto/13be564d37.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "1831ce28d4",
+     "text": "1831ce28d49e305c6751b765ae1fb0be",
+     "file": "oto/1831ce28d4.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "c65ae5d175",
+     "text": "c65ae5d175688391834e7aa1529a3ee4",
+     "file": "oto/c65ae5d175.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "a5719cf9a7",
+     "text": "a5719cf9a765e2cd580222cdd9beb75a",
+     "file": "oto/a5719cf9a7.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "2419ef8b42",
+     "text": "2419ef8b42cb682abff8fa866a18901e",
+     "file": "oto/2419ef8b42.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "7f485b286e",
+     "text": "7f485b286ec393dbc88c237cc8ab8ae1",
+     "file": "oto/7f485b286e.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "bb69bbb9fd",
+     "text": "bb69bbb9fdf965f840fd11142c6c6743",
+     "file": "oto/bb69bbb9fd.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "c1356642a2",
+     "text": "c1356642a291d4031b2e2bd8011c9086",
+     "file": "oto/c1356642a2.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "a0274ede68",
+     "text": "a0274ede68c1b480277156a66a811a8a",
+     "file": "oto/a0274ede68.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "09eb90430e",
+     "text": "09eb90430ee2bd64f311d7ac7dbfe4ed",
+     "file": "oto/09eb90430e.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "00d32b7953",
+     "text": "00d32b7953e29413c2b4a2b38200d9ba",
+     "file": "oto/00d32b7953.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "43d005d430",
+     "text": "43d005d430900924fac5239741379c6f",
+     "file": "oto/43d005d430.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "a39a8ab3c0",
+     "text": "a39a8ab3c09ce6fa96b6055f28f164a6",
+     "file": "oto/a39a8ab3c0.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "83e2cfe185",
+     "text": "83e2cfe185e4ad35a84d6073561c5cbc",
+     "file": "oto/83e2cfe185.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "8614f8c989",
+     "text": "8614f8c989946ed29cd99cbdd75ee719",
+     "file": "oto/8614f8c989.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "da62add3a7",
+     "text": "da62add3a7807a40c5feeadd163ce254",
+     "file": "oto/da62add3a7.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "58086e2cfb",
+     "text": "58086e2cfbbef81b5c7c70679461215a",
+     "file": "oto/58086e2cfb.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "84f6c86894",
+     "text": "84f6c868946ed3872770ef56754f0594",
+     "file": "oto/84f6c86894.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "c747484486",
+     "text": "c747484486b8d0589519766021bf479f",
+     "file": "oto/c747484486.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "1d7b65ee16",
+     "text": "1d7b65ee16db7458fc98b91c3fed97dd",
+     "file": "oto/1d7b65ee16.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "b338de6af3",
+     "text": "b338de6af3910e491f26ed6d0bc27a83",
+     "file": "oto/b338de6af3.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "1a74a3473e",
+     "text": "1a74a3473e11418747f0958fcd78d5eb",
+     "file": "oto/1a74a3473e.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "bad8c47426",
+     "text": "bad8c47426f1bddb79d371d804abbc43",
+     "file": "oto/bad8c47426.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "06a2b82991",
+     "text": "06a2b82991ddd90fdc16bada235fd24a",
+     "file": "oto/06a2b82991.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "d5d70a0c3c",
+     "text": "d5d70a0c3ca61e2dc62aaf48f7b53e01",
+     "file": "oto/d5d70a0c3c.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "760ac5e4db",
+     "text": "760ac5e4db6d5e1f6785b2644443b88c",
+     "file": "oto/760ac5e4db.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "957bb38cd2",
+     "text": "957bb38cd2266bd7260acc96a6666969",
+     "file": "oto/957bb38cd2.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "b11e3b7642",
+     "text": "b11e3b7642db848f75de3ed16d1e41f6",
+     "file": "oto/b11e3b7642.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "d71fb289b4",
+     "text": "d71fb289b4e1e946c932b3164135d75e",
+     "file": "oto/d71fb289b4.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "59c7bbddb9",
+     "text": "59c7bbddb92304e793ffe0701421053b",
+     "file": "oto/59c7bbddb9.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "cf598f78fb",
+     "text": "cf598f78fbc6eb8a98d4f2cc859378c8",
+     "file": "oto/cf598f78fb.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "f4f157ad6f",
+     "text": "f4f157ad6fe4660240811bba1c771ff4",
+     "file": "oto/f4f157ad6f.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "8446ecfe56",
+     "text": "8446ecfe5642028db0f1a517bd4c8e6d",
+     "file": "oto/8446ecfe56.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "a3a861c061",
+     "text": "a3a861c0612d1d787dc0cb30af6f27b3",
+     "file": "oto/a3a861c061.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "72ddbcc19f",
+     "text": "72ddbcc19f72368c2477e300b2bf79ed",
+     "file": "oto/72ddbcc19f.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "eac052d525",
+     "text": "eac052d525dcbbe473a7c3e89f25c131",
+     "file": "oto/eac052d525.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "fafe73bd7c",
+     "text": "fafe73bd7c33967e1828841c0b467f38",
+     "file": "oto/fafe73bd7c.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "7ffc72fe27",
+     "text": "7ffc72fe27bd0ad4b3c28a6bc0fc0314",
+     "file": "oto/7ffc72fe27.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "1c90e4654d",
+     "text": "1c90e4654d2916685bc9059349d1384f",
+     "file": "oto/1c90e4654d.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "a8601a41c8",
+     "text": "a8601a41c8f27f46b9527fa3f709a9e6",
+     "file": "oto/a8601a41c8.mp3",
+     "note": "Mä n'a mä mfeni"
+    },
+    {
+     "id": "bd34c94579",
+     "text": "bd34c94579fc414c11920150dec99f00",
+     "file": "oto/bd34c94579.mp3",
+     "note": "Mä n'a mä mfeni"
+    }
+   ]
+  }
+ ]
+}

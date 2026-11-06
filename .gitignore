@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.vite/
+*.log
+.env
+.env.*
+!.env.example
+.voice_work/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

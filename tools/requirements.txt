@@ -1,0 +1,6 @@
+# Needed only to BUILD the audio data on your computer (the app itself needs none of this).
+numpy>=1.24
+soundfile>=0.12.1
+lameenc>=1.7
+soxr>=0.3
+pyarrow>=14
