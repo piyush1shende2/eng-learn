@@ -7,6 +7,7 @@ import { AllKeysFailed, streamWithFailover } from './keys.js';
 // Builds the Express app. `open(key)` creates the Gemini stream for one API key, so tests can pass a fake.
 export function createApp({ pool, open, model, origins, log = console.log }) {
   const app = express();
+  app.set('trust proxy', 1); // behind Render/Railway etc. the real visitor address comes from the proxy (needed for the rate limit)
   app.use(cors({ origin: origins }));
   app.use(express.json({ limit: '32kb' }));
   app.use('/api/', rateLimit({ windowMs: 60_000, limit: 60 }));

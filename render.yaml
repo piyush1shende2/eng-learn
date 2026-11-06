@@ -1,0 +1,20 @@
+# One-click backend for "Chat with teacher" on Render (https://render.com): New > Blueprint > pick this repo.
+# The API keys are NOT stored here: Render asks you for them while creating the service.
+services:
+  - type: web
+    name: eng-learn-teacher
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY_1
+        sync: false
+      - key: GEMINI_API_KEY_2
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
+      - key: FRONTEND_ORIGIN
+        value: https://piyush1shende2.github.io
