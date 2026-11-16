@@ -118,3 +118,5 @@ An AI speaking coach powered by Google Gemini. It needs the small server in the 
 **Automatic key switching.** Keys are tried in order. If one runs out of quota (or is rejected), the same message is sent again with the next key, so the learner doesn't notice. The resting key is tried again automatically later. Open `http://localhost:5000/api/health` to see how many keys are ready (it never shows the keys).
 
 Settings in `server/.env`: `GEMINI_MODEL`, `PORT`, `FRONTEND_ORIGIN`.
+
+**Live site: use your own key.** On the live GitHub Pages site there is no shared teacher. Visitors open Speak → Chat with teacher, paste their own free Gemini key (from https://aistudio.google.com/apikey) in the "Add your API key" box, and the chat starts. The key is kept only in that browser tab (session storage), is sent only to Google, and is erased when the tab or window is closed. No server of ours ever sees it, so no Render setup is needed for this mode.
