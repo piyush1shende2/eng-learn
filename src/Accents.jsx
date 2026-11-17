@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { speak, stopSpeak, canSpeak, pickVoice } from './speech.js';
 import RecordCompare from './RecordCompare.jsx';
 import HumanVoices from './HumanVoices.jsx';
@@ -12,6 +12,7 @@ import VoicePicker from './VoicePicker.jsx';
 import Meaning from './Meaning.jsx';
 
 // view: which section of the Accents area to show (the top menu picks it). Default 'compare'.
+const coin = () => (Math.random() < 0.5 ? 0 : 1); // random choice of the first or second word
 export default function Accents({ ctx, view = 'compare' }) {
   const { s, award, t } = ctx, tg = s.target || 'en', isEn = tg === 'en';
   const accs = accentsFor(tg), v = s.voice || { accent: accs[0][0], style: 'w1', rate: 0.85 };
@@ -36,8 +37,8 @@ export default function Accents({ ctx, view = 'compare' }) {
   };
   const halt = () => { token.current++; stopSpeak(); setNow(''); };
 
-  const [pi, setPi] = useState(0), [r, setR] = useState(null);
-  const pair = PAIRS[pi % PAIRS.length], target = useMemo(() => (Math.random() < 0.5 ? pair.a : pair.b), [pi]);
+  const [pi, setPi] = useState(0), [r, setR] = useState(null), [side, setSide] = useState(coin);
+  const pair = PAIRS[pi % PAIRS.length], target = side ? pair.b : pair.a; // which word of the pair is played is chosen when the question changes
   const pick = (w) => { if (r) return; if (w === target) { setR('ok'); award(10, 'accents'); } else setR('no'); };
 
   return (<>
@@ -63,6 +64,6 @@ export default function Accents({ ctx, view = 'compare' }) {
       <div className="row"><button onClick={() => speak(pair.a, v)}>🔊 {pair.a}</button><button onClick={() => speak(pair.b, v)}>🔊 {pair.b}</button></div>
       <div className="row"><button className="ghost" onClick={() => speak(target, v)}>▶ Play mystery word</button><button className="opt" onClick={() => pick(pair.a)}>{pair.a}</button><button className="opt" onClick={() => pick(pair.b)}>{pair.b}</button></div>
       {r && <p className={`fb ${r}`} role="status">{r === 'ok' ? t.great : t.again} (It was “{target}”.)</p>}
-      <button className="ghost" onClick={() => { setPi(pi + 1); setR(null); }}>{t.next}</button></div>}
+      <button className="ghost" onClick={() => { setPi(pi + 1); setSide(coin()); setR(null); }}>{t.next}</button></div>}
   </>);
 }

@@ -43,11 +43,13 @@ export default function ScanTranslate({ ctx, src, dst, online, push }) {
     if (!v || !v.videoWidth) { setErr('The video is not ready yet.'); return null; }
     const c = document.createElement('canvas'); c.width = v.videoWidth; c.height = v.videoHeight; c.getContext('2d').drawImage(v, 0, 0); return c;
   };
+  const autoScan = useRef(null); // always points at the newest capture/scan, so the timer below never uses old settings
+  useEffect(() => { autoScan.current = () => { const c = capture(); if (c) scan(c, true); }; });
   useEffect(() => {
     if (!auto || !cam) return undefined;
-    const id = setInterval(() => { const c = capture(); if (c) scan(c, true); }, 4500);
+    const id = setInterval(() => autoScan.current && autoScan.current(), 4500);
     return () => clearInterval(id);
-  }, [auto, cam, lang, dst, online]);
+  }, [auto, cam]);
   const onFile = (e) => {
     const f = e.target.files[0]; if (!f) return;
     stopCam(); setErr(''); setOut(''); setText(''); if (media) URL.revokeObjectURL(media.url);

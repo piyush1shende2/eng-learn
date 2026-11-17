@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { STYLES, voicesFor, speak, setCurrent, canSpeak, beep, pickVoice, listVoices } from './speech.js';
 import { accentsFor, phraseSet } from './langs.js';
 
@@ -6,9 +6,8 @@ export default function VoicePicker({ ctx: { s, set } }) {
   const tg = s.target || 'en', accs = accentsFor(tg);
   const v = s.voice || { accent: 'en-US', style: 'w1', rate: 0.85, variety: true };
   const acc = accs.some((a) => a[0] === v.accent) ? v.accent : accs[0][0];
-  const [n, setN] = useState(0);
+  const n = voicesFor(acc).length, [, refresh] = useState(0); // refresh() redraws so the voice count is re-read after the sample plays
   const upd = (p) => { const nv = { ...v, accent: acc, ...p }; set({ voice: nv }); setCurrent(nv); };
-  useEffect(() => { setN(voicesFor(acc).length); }, [acc]);
   if (!canSpeak) return <p className="fb no">This browser has no text-to-speech voices, so the AI cannot speak here. You can still read, type and practise.</p>;
   const grp = (g, label) => <optgroup label={label}>{STYLES.filter((x) => x.g === g).map((x) => <option key={x.id} value={x.id}>{x.label}</option>)}</optgroup>;
   const sample = tg === 'en' ? 'Hello! This is how I sound. How are you today?' : phraseSet(tg).slice(0, 2).join(' ');
@@ -18,7 +17,7 @@ export default function VoicePicker({ ctx: { s, set } }) {
       <label>Voice <select value={v.style} onChange={(e) => upd({ style: e.target.value })}>{grp('f', 'Women')}{grp('m', 'Men')}{grp('k', 'Kids')}</select></label>
       <label>Speed {v.rate.toFixed(2)}x <input type="range" min="0.5" max="1.3" step="0.05" value={v.rate} onChange={(e) => upd({ rate: +e.target.value })} /></label>
       <label><input type="checkbox" checked={v.variety !== false} onChange={(e) => upd({ variety: e.target.checked })} /> Natural variety</label>
-      <button className="ghost" onClick={() => { setN(voicesFor(acc).length); speak(sample, { ...v, accent: acc }); }}>🔊 Hear sample</button>
+      <button className="ghost" onClick={() => { refresh((x) => x + 1); speak(sample, { ...v, accent: acc }); }}>🔊 Hear sample</button>
     </div>
     {(() => { const rv = pickVoice(acc, v.style); return rv.voice ? <p role="status">{rv.exact ? '✓' : '⚠'} Using voice: <strong>{rv.voice.name}</strong> ({rv.voice.lang}). {rv.exact ? 'It matches this region.' : 'No voice exists for exactly this region on this device, so a voice of the same language is used. Different regions may sound identical.'}</p> : <p className="fb no">No voice was found for this language on this device.</p>; })()}
     <p className="muted">{n ? `${n} voice(s) found on this device for this accent.` : 'No voice for this accent was found on this device, so a default voice is used.'} Natural variety changes pitch and pace slightly each time, lets questions rise and statements fall, and gives each chat scene its own speaker. Voices come from your browser and operating system; kid voices are higher-pitched adult voices, and some voices ignore pitch.</p>

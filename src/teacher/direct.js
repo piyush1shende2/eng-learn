@@ -43,7 +43,7 @@ const FRIENDLY = {
 export async function streamDirect(payload, keys, model, onText, signal) {
   const parsed = parseChatRequest(payload);
   if (parsed.error) throw new Error(parsed.error);
-  const { contents, systemInstruction } = parsed.value;
+  const { contents, systemInstruction, generation } = parsed.value;
   let answer = '';
   const open = async (key) => {
     let response;
@@ -51,7 +51,7 @@ export async function streamDirect(payload, keys, model, onText, signal) {
       response = await fetch(`${ENDPOINT}/${encodeURIComponent(model)}:streamGenerateContent?alt=sse`, {
         method: 'POST', signal,
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-        body: JSON.stringify({ contents, systemInstruction: { parts: [{ text: systemInstruction }] }, generationConfig: { temperature: 0.65, maxOutputTokens: 700 } }),
+        body: JSON.stringify({ contents, systemInstruction: { parts: [{ text: systemInstruction }] }, generationConfig: generation }),
       });
     } catch (e) {
       if (e && e.name === 'AbortError') throw e;

@@ -9,7 +9,7 @@ const VIA = { phrasebook: 'offline phrasebook', correction: 'your correction', d
 // Shows what the practice sentence MEANS in the language the learner already knows.
 // Practice sentence (big, above)  +  this line (below)  =  two sentences side by side.
 // Uses the app's own translate() engine: corrections -> phrasebook -> Chrome on-device -> MyMemory online (can be switched off).
-export default function Meaning({ text, from, to, ctx }) {
+export default function Meaning({ text, from, to }) {
   const [res, setRes] = useState(null), [online, setOnline] = useState(readOnline), [n, setN] = useState(0);
   const same = !text || from === to, id = [text, from, to, online, n].join('|');
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { SENT, PARA, HARD } from './data3.js';
 import { speak, stopSpeak, tokenize, canSpeak } from './speech.js';
 import { phraseSet, langOf } from './langs.js';
@@ -9,9 +9,16 @@ import { ClipPlayer } from './VoiceLibrary.jsx';
 import VoicePicker from './VoicePicker.jsx';
 
 // The AI reads the text aloud and the words light up as they are spoken.
+// Character position where each word starts, so the highlight can follow the voice.
+function wordStarts(text, tk) {
+  const out = []; let at = 0;
+  for (const w of tk) { at = Math.max(0, text.indexOf(w, at)); out.push(at); at += w.length; }
+  return out;
+}
+
 export function Narrate({ text, ctx: { s } }) {
   const lang = s.target || 'en', tk = tokenize(text, lang), [pos, setPos] = useState(-1), [on, setOn] = useState(false);
-  const offs = useMemo(() => { let i = 0; return tk.map((w) => { i = Math.max(0, text.indexOf(w, i)); const o = i; i += w.length; return o; }); }, [text, lang]);
+  const offs = wordStarts(text, tk);
   const timer = useRef(), got = useRef(false);
   const stop = () => { stopSpeak(); clearInterval(timer.current); setOn(false); };
   const rate = s.voice ? s.voice.rate : 0.85;

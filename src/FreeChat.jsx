@@ -44,6 +44,8 @@ function Results({ msgs, ctx: { addMistake } }) {
   </>);
 }
 
+const newId = () => 'a' + Date.now(); // unique id for a message added by a tap
+
 export default function FreeChat({ ctx }) {
   const { award, s } = ctx;
   const v = s.voice || { accent: 'en-US', style: 'w1', rate: 0.85 };
@@ -73,7 +75,7 @@ export default function FreeChat({ ctx }) {
   };
   const stopMic = () => { try { rec.current && rec.current.stop(); } catch { /* ignore */ } };
   const submit = () => send(input, !!input && input === heard.current.text, heard.current.conf);
-  const topic = (tp) => { const m = { id: 'a' + Date.now(), from: 'ai', text: tp.q, sug: tp.sug }; setMsgs((p) => [...p, m]); if (read) speak(tp.q, v); };
+  const topic = (tp) => { const m = { id: newId(), from: 'ai', text: tp.q, sug: tp.sug }; setMsgs((p) => [...p, m]); if (read) speak(tp.q, v); };
   const fresh = () => { if (!window.confirm('Start a new chat? The current chat will be cleared.')) return; clearTimeout(timer.current); busy.current = false; setMsgs([firstMessage()]); setView('chat'); setInput(''); };
   const last = msgs[msgs.length - 1], sug = last && last.from === 'ai' ? last.sug || [] : [];
 

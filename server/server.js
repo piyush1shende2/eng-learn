@@ -13,9 +13,9 @@ const origins = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173').split('
 const pool = new KeyPool(loadKeys());
 
 // Creates the streaming call for one key and yields the text pieces.
-async function open(key, { model: modelId, contents, systemInstruction }) {
+async function open(key, { model: modelId, contents, systemInstruction, generation = { temperature: 0.65, maxOutputTokens: 700 } }) {
   const ai = new GoogleGenAI({ apiKey: key });
-  const stream = await ai.models.generateContentStream({ model: modelId, contents, config: { systemInstruction, temperature: 0.65, maxOutputTokens: 700 } });
+  const stream = await ai.models.generateContentStream({ model: modelId, contents, config: { systemInstruction, ...generation } });
   return (async function* pieces() { for await (const chunk of stream) yield chunk.text || ''; })();
 }
 

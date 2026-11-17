@@ -19,7 +19,7 @@ export function createApp({ pool, open, model, origins, log = console.log }) {
     if (!pool.size) return res.status(500).json({ error: 'No Gemini API key found. Add GEMINI_API_KEY_1 (and GEMINI_API_KEY_2) to server/.env and restart the server.' });
     const parsed = parseChatRequest(req.body);
     if (parsed.error) return res.status(400).json({ error: parsed.error });
-    const { contents, systemInstruction } = parsed.value;
+    const { contents, systemInstruction, generation } = parsed.value;
 
     let started = false;
     const write = (text) => {
@@ -33,7 +33,7 @@ export function createApp({ pool, open, model, origins, log = console.log }) {
       res.write(text);
     };
     try {
-      await streamWithFailover({ pool, open: (key) => open(key, { model, contents, systemInstruction }), write, log: (m) => log(`[keys] ${m}`) });
+      await streamWithFailover({ pool, open: (key) => open(key, { model, contents, systemInstruction, generation }), write, log: (m) => log(`[keys] ${m}`) });
       if (!started) write(''); // empty answer: still a valid, finished response
       res.end();
     } catch (error) {

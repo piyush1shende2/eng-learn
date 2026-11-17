@@ -14,7 +14,10 @@ function Scene({ sc, ctx, back }) {
   const lock = useRef(-1), endRef = useRef();
   const v = s.voice || { accent: 'en-US', style: 'w1', rate: 0.85 };
   const vv = v.variety !== false ? { ...v, style: personaStyle(sc.id) } : v; // each scene has its own speaker
-  useEffect(() => { const l = msgs[msgs.length - 1]; if (auto && l.f === 'ai') speak(l.t, vv); if (endRef.current && endRef.current.scrollIntoView) endRef.current.scrollIntoView({ block: 'nearest' }); }, [msgs.length]);
+  // Speaks and scrolls when a message is added. The latest messages, voice and switch are kept in a ref that is refreshed after every render.
+  const onNew = useRef(null);
+  useEffect(() => { onNew.current = () => { const l = msgs[msgs.length - 1]; if (auto && l.f === 'ai') speak(l.t, vv); if (endRef.current && endRef.current.scrollIntoView) endRef.current.scrollIntoView({ block: 'nearest' }); }; });
+  useEffect(() => { onNew.current(); }, [msgs.length]);
   const cont = ({ heard }) => {
     if (lock.current === step) return; lock.current = step; // one reply per turn
     const nm = [...msgs, { f: 'me', t: heard }], ns = step + 1;
@@ -45,7 +48,7 @@ function Translated({ sc, ctx, back }) {
       setRes({ ...sc, steps, bye: out[out.length - 1], orig: sc });
     })();
     return () => { off = true; };
-  }, [sc.id, tg]);
+  }, [sc, tg]);
   if (err) return <div className="card"><p className="fb no" role="alert">{err}</p><button onClick={back}>← Scenes</button></div>;
   if (!res) return <div className="card"><p role="status">Preparing this scene in {langOf(tg).name}…</p></div>;
   return <Scene sc={res} ctx={ctx} back={back} />;

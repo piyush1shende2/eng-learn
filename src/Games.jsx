@@ -9,7 +9,7 @@ const Feedback = ({ r, t, extra }) => r == null ? null : (
 export function Scramble({ ctx: { award, addMistake, t } }) {
   const [i, setI] = useState(0), [g, setG] = useState(''), [r, setR] = useState(null), [h, setH] = useState(0);
   const q = SCRAMBLE[i % SCRAMBLE.length];
-  const mix = useMemo(() => { let m; do m = shuffle(q.w.split('')); while (m.join('') === q.w); return m.join(' '); }, [i]);
+  const mix = useMemo(() => { let m; do m = shuffle(q.w.split('')); while (m.join('') === q.w); return m.join(' '); }, [q.w]);
   const check = () => {
     if (r) return; // duplicate-click guard
     if (g.trim().toUpperCase() === q.w) { setR('ok'); award(Math.max(4, 10 - h * 3), 'scramble'); }
@@ -29,7 +29,7 @@ export function Scramble({ ctx: { award, addMistake, t } }) {
 export function Builder({ ctx: { award, addMistake, t } }) {
   const [i, setI] = useState(0), [pick, setPick] = useState([]), [r, setR] = useState(null);
   const ans = BUILDER[i % BUILDER.length];
-  const pool = useMemo(() => shuffle(ans.map((w, k) => ({ w, k }))), [i]);
+  const pool = useMemo(() => shuffle(ans.map((w, k) => ({ w, k }))), [ans]);
   const toggle = (k) => !r && setPick(pick.includes(k) ? pick.filter((x) => x !== k) : [...pick, k]);
   const check = () => {
     if (r) return;
@@ -51,7 +51,7 @@ export function Builder({ ctx: { award, addMistake, t } }) {
 export function FindMistake({ ctx: { award, addMistake, t } }) {
   const [i, setI] = useState(0), [r, setR] = useState(null);
   const q = MISTAKES[i % MISTAKES.length];
-  const opts = useMemo(() => shuffle([q.bad, q.good]), [i]);
+  const opts = useMemo(() => shuffle([q.bad, q.good]), [q.bad, q.good]);
   const choose = (o) => {
     if (r) return;
     if (o === q.good) { setR('ok'); award(10, 'mistake'); } else { setR('no'); addMistake(q.bad, q.good, q.why); }

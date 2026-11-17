@@ -17,7 +17,9 @@ const THR = { set: 45, word: 60, shape: 50 };
 // the guide; it is not handwriting recognition. Fonts come from your device.
 export default function Cursive({ ctx: { s, award, t } }) {
   const known = s.known || 'en';
-  const [wl, setWl] = useState(s.target || 'en'), [si, setSi] = useState(0), [kind, setKind] = useState('set'), [seti, setSeti] = useState(0), [i, setI] = useState(0), [score, setScore] = useState(null);
+  const [wl, setWl] = useState(s.target || 'en'), [si, setSi] = useState(0), [kind, setKind] = useState('set'), [seti, setSeti] = useState(0), [i, setI] = useState(0), [scoreAt, setScoreAt] = useState({ sig: '', v: null });
+  // The score belongs to one exercise. It disappears by itself when the letter, style or language changes.
+  const sig = [wl, si, kind, seti, i].join('|'), score = scoreAt.sig === sig ? scoreAt.v : null, setScore = (v) => setScoreAt({ sig, v });
   const guide = useRef(), draw = useRef(), down = useRef(false), awarded = useRef(false);
   const styles = STYLES[SCRIPT[wl]], style = styles[si % styles.length], lang = langOf(wl);
   const sets = setsFor(wl), set = sets[seti % sets.length], words = writeWords(wl, known);
@@ -37,8 +39,8 @@ export default function Cursive({ ctx: { s, award, t } }) {
       g.strokeStyle = '#b9d9c6'; g.lineWidth = 16; g.lineJoin = 'round';
       if (kind === 'set') { g.font = font(style, 150); g.strokeText(text, W / 2, H / 2 + 8); } else { g.beginPath(); SHAPES[text](g); g.stroke(); }
     }
-    draw.current.getContext('2d').clearRect(0, 0, W, H); setScore(null); awarded.current = false;
-  }, [wl, si, kind, seti, i]);
+    draw.current.getContext('2d').clearRect(0, 0, W, H); awarded.current = false;
+  }, [wl, si, kind, seti, i, lang.rtl, style, text]);
 
   const pos = (e) => { const r = draw.current.getBoundingClientRect(); return [((e.clientX - r.left) * W) / r.width, ((e.clientY - r.top) * H) / r.height]; };
   const start = (e) => { down.current = true; draw.current.setPointerCapture(e.pointerId); const c = draw.current.getContext('2d'); c.lineWidth = 10; c.lineCap = c.lineJoin = 'round'; c.strokeStyle = '#3f5b4e'; c.beginPath(); c.moveTo(...pos(e)); };

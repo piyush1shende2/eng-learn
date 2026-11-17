@@ -20,18 +20,22 @@ function Entry({ e, ctx, onSave, onDelete }) {
   </div>);
 }
 
+// Unique id and time for a new translation entry.
+const stamp = () => ({ id: Date.now() + '-' + Math.random().toString(36).slice(2, 6), at: Date.now() });
+
 function LearnPanel({ e, ctx, online }) {
-  const [rows, setRows] = useState([]), [mean, setMean] = useState(''), known = ctx.s.known || 'en';
+  const [data, setData] = useState({ id: '', rows: [], mean: '' }), known = ctx.s.known || 'en';
+  const rows = data.id === e.id ? data.rows : [], mean = data.id === e.id ? data.mean : ''; // results of an older translation are never shown
   useEffect(() => {
-    let off = false; setRows([]); setMean('');
+    let off = false;
     (async () => {
       const out = [];
       for (const w of keyWords(e.src, e.from)) { const r = await translate(w, e.from, e.to, { online }); if (off) return; if (r.text) out.push([w, r.text]); }
-      if (!off) setRows(out);
-      if (known !== e.to && known !== e.from) { const m = await translate(e.out, e.to, known, { online }); if (!off && m.text) setMean(m.text); }
+      if (!off) setData((d) => ({ id: e.id, rows: out, mean: d.id === e.id ? d.mean : '' }));
+      if (known !== e.to && known !== e.from) { const m = await translate(e.out, e.to, known, { online }); if (!off && m.text) setData((d) => ({ id: e.id, rows: d.id === e.id ? d.rows : [], mean: m.text })); }
     })();
     return () => { off = true; };
-  }, [e.id]);
+  }, [e.id, e.from, e.to, e.src, e.out, known, online]);
   const to = e.to === 'hing' ? 'hi' : e.to, ctx2 = { ...ctx, s: { ...ctx.s, target: to, voice: { ...ctx.s.voice, accent: accentFor(to, ctx.s) } } };
   return (<div className="card"><h4>📘 Learning mode</h4>
     {rows.length > 0 ? <>{rows.map(([a, b]) => <p key={a}><strong dir="auto">{a}</strong> → <span dir="auto">{b}</span></p>)}</> : <p className="muted">Looking for key words…</p>}
@@ -42,8 +46,9 @@ function LearnPanel({ e, ctx, online }) {
 
 function Engine({ src, dst, online, setOnline, s }) {
   const from = src === 'auto' ? s.known || 'en' : src;
-  const [av, setAv] = useState('checking'), [pct, setPct] = useState(0), [msg, setMsg] = useState('');
-  useEffect(() => { let off = false; setAv('checking'); deviceAvailability(from, dst).then((a) => !off && setAv(a)); return () => { off = true; }; }, [from, dst]);
+  const [avAt, setAvAt] = useState({ pair: '', v: 'checking' }), [pct, setPct] = useState(0), [msg, setMsg] = useState('');
+  const pair = from + '>' + dst, av = avAt.pair === pair ? avAt.v : 'checking', setAv = (v) => setAvAt({ pair, v }); // a new language pair starts as "checking"
+  useEffect(() => { let off = false; deviceAvailability(from, dst).then((a) => !off && setAvAt({ pair: from + '>' + dst, v: a })); return () => { off = true; }; }, [from, dst]);
   const dl = async () => { setMsg(''); setAv('downloading'); try { await prepareDevice(from, dst, (p) => setPct(Math.round(p * 100))); setAv('available'); } catch (e) { setAv('downloadable'); setMsg('Could not download the language pack: ' + ((e && e.message) || 'unknown error')); } };
   return (<div className="card"><h4>Translation engine</h4>
     <p>{!deviceSupport() ? 'This browser has no on-device translator (Chrome 138+ on desktop has one). The online translator and the offline phrasebook are used instead.'
@@ -75,7 +80,7 @@ export default function TranslatorTab({ ctx }) {
     const r = await translate(t, f, to, { online });
     busyRef.current = false; setBusy(false);
     if (!r.text) { setErr(r.error || 'No translation engine is available.'); return; }
-    const e = { id: Date.now() + '-' + Math.random().toString(36).slice(2, 6), from: f, to, src: t, out: r.text, via: r.via, side, at: Date.now() };
+    const e = { ...stamp(), from: f, to, src: t, out: r.text, via: r.via, side };
     push(e); award(3, 'translate'); setInput(''); setLiveOut('');
     if (autoPlay) speak(r.text, { accent: accentFor(to, s), rate: s.voice ? s.voice.rate : 0.85 });
   };

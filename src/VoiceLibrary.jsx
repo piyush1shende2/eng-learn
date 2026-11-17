@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useVoices, voiceUrl } from './voices.js';
 import { tokenize } from './speech.js';
 import { Karaoke, Attempt } from './Attempt.jsx';
@@ -8,9 +8,15 @@ import Meaning from './Meaning.jsx';
 const EMO = { neutral: 'calm, normal', amused: 'smiling, amused', angry: 'angry, sharp', disgusted: 'disgusted', drunk: 'slurred and slow (recorded sober)', sleepy: 'tired and slow', surprised: 'surprised, rising', whisper: 'whispered' };
 const sh = (a) => [...a].sort(() => Math.random() - 0.5);
 
+// Letters counted up to the end of each word (used to follow the recording).
+function runningLetters(tk) {
+  let sum = 0;
+  return tk.map((w) => (sum += w.length + 1));
+}
+
 // Plays a real recording and lights up the words in step with it. Word timing is approximate (by letters).
 export function ClipPlayer({ text, file }) {
-  const tk = tokenize(text, 'en'), cum = useMemo(() => { let s = 0; return tk.map((w) => (s += w.length + 1)); }, [text]);
+  const tk = tokenize(text, 'en'), cum = runningLetters(tk);
   const a = useRef(), [pos, setPos] = useState(-1), [on, setOn] = useState(false);
   const tick = () => { const el = a.current; if (!el || !el.duration) return; const r = el.currentTime / el.duration, i = cum.findIndex((c) => c / cum[cum.length - 1] >= r); setPos(i < 0 ? tk.length : i); };
   const play = (rate) => { const el = a.current; if (!el) return; el.playbackRate = rate; el.currentTime = 0; el.play().catch(() => {}); };

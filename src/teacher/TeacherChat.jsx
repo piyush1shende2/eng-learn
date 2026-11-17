@@ -6,15 +6,17 @@ import { checkHealth, streamChat } from './transport.js';
 import { streamDirect } from './direct.js';
 import { loadSession, saveSession, clearSession } from './userKey.js';
 import KeyPanel from './KeyPanel.jsx';
+import RichText from './RichText.jsx';
 import { splitReply, cleanForSpeech, pickVoice, readTags, guessLevel } from './replyParts.js';
 
 const QUICK = ['Teach me a phrase', 'Correct my sentence', 'Let’s role-play'];
 const STATUS = { own: '🟢 Using your own API key (kept in this browser tab only)', checking: 'Checking the teacher server…', ready: '🟢 Teacher server connected', nokey: '🟠 Teacher server is running but has no API key (add GEMINI_API_KEY_1 to server/.env and restart it)', offline: '🔴 Teacher server not reachable. Start it with “npm start” inside the server folder (see the README).' };
 const synth = () => (typeof window !== 'undefined' && 'speechSynthesis' in window ? window.speechSynthesis : null);
 const VISIBLE_SCENES = 10;
+const COACH_PHRASES = ['How are you doing today?', 'Could I have a glass of water, please?', 'I would like to book a table for two.', 'Where is the nearest train station?'];
 
 // The conversation survives switching between tabs (it is not saved after the page is reloaded).
-let kept = null;
+let kept = null; // { msgs, profile, mode }
 
 // Chat with teacher: an AI speaking coach (Gemini, through the server/ folder). Languages and accent come from the main menu.
 // The teacher opens by asking the learner's level and the scenario to practise, then runs the practice.
@@ -22,13 +24,14 @@ export default function TeacherChat({ ctx }) {
   const st = resolveTeacher(ctx.s);
   const [msgs, setMsgs] = useState(() => (kept ? kept.msgs : []));
   const [profile, setProfile] = useState(() => (kept ? kept.profile : { level: '', scene: '' }));
+  const [mode, setMode] = useState(() => (kept && kept.mode) || 'chat'); // 'chat' = conversation teacher, 'coach' = accent coach
   const [draft, setDraft] = useState(''), [busy, setBusy] = useState(false), [live, setLive] = useState(false);
   const [speakOn, setSpeakOn] = useState(true), [notice, setNotice] = useState(''), [server, setServer] = useState('checking'), [allScenes, setAllScenes] = useState(false);
   const [session, setSession] = useState(() => loadSession()); // the visitor's own API key (this tab only), if they added one
   const hasKey = !!session, canChat = hasKey || server === 'ready';
   const listRef = useRef(null), inputRef = useRef(null), micRef = useRef(null), runRef = useRef(0), ctlRef = useRef(null), sigRef = useRef(null), turnRef = useRef(null);
-  const msgsRef = useRef(msgs), profileRef = useRef(profile), speakOnRef = useRef(speakOn);
-  useEffect(() => { msgsRef.current = msgs; kept = { msgs: msgs.filter((m) => !m.streaming), profile }; }, [msgs, profile]);
+  const msgsRef = useRef(msgs), profileRef = useRef(profile), speakOnRef = useRef(speakOn), modeRef = useRef(mode);
+  useEffect(() => { msgsRef.current = msgs; kept = { msgs: msgs.filter((m) => !m.streaming), profile, mode }; }, [msgs, profile, mode]);
   useEffect(() => { speakOnRef.current = speakOn; }, [speakOn]);
   useEffect(() => { synth() && synth().getVoices(); }, []); // voices load asynchronously; touching the list lets them fill
   useEffect(() => { let off = false; checkHealth().then((r) => { if (!off) setServer(r); }); return () => { off = true; }; }, []);
@@ -37,14 +40,16 @@ export default function TeacherChat({ ctx }) {
 
   const turns = msgs.filter((m) => m.role === 'user').length;
   const answered = msgs.some((m) => m.role === 'model' && m.text && !m.streaming);
-  const stage = !profile.level ? 'level' : !profile.scene ? 'scene' : 'practice';
+  const coach = mode === 'coach';
+  const stage = coach ? 'practice' : !profile.level ? 'level' : !profile.scene ? 'scene' : 'practice';
 
   // Same language: one voice. Different language: explanation in the reply language, [[phrases]] in the practice language with its accent.
   function speak(text) {
     const s = synth();
     if (!s) { setNotice('Speech playback is not supported in this browser.'); return; }
     s.cancel();
-    const pieces = st.sameLanguage ? [{ phrase: false, text }] : splitReply(text);
+    // Coach: only the [[local phrase]] and the practice sentence are read aloud (never the IPA or the tips), in the practice accent.
+    const pieces = modeRef.current === 'coach' ? splitReply(text).filter((x) => x.phrase) : st.sameLanguage ? [{ phrase: false, text }] : splitReply(text);
     let missing = null;
     pieces.forEach((piece) => {
       const spoken = cleanForSpeech(piece.text);
@@ -87,17 +92,19 @@ export default function TeacherChat({ ctx }) {
       const history = intro ? [] : prior.filter((m) => m.text).slice(-10).map((m) => ({ role: m.role, text: m.text }));
       const talk = session ? (p, cb, sig) => streamDirect(p, session.keys, session.model, cb, sig) : streamChat;
       const answer = await talk({
-        message: text, intro, history, level: before.level, scene: before.scene,
+        message: text, intro, history, level: before.level, scene: before.scene, mode: modeRef.current,
         practiceLanguage: st.practice.name, accent: st.accent.ai, replyLanguage: st.reply.name, replyAccent: st.replyAccent.ai,
       }, (partial) => { if (run === runRef.current) patchLast({ role: 'model', text: readTags(partial).text, streaming: true }); }, ctl.signal);
       if (run !== runRef.current) return; // Start over or a menu change happened while the teacher was answering
       const read = readTags(answer), clean = read.text.trim() || 'Let’s try that again. Could you say a little more?';
       patchLast({ role: 'model', text: clean, streaming: false });
       // The teacher tags the answers to the two opening questions. If a tag is missing, fall back to what the learner typed or tapped.
-      let { level, scene } = { level: read.level || before.level, scene: read.scene || before.scene };
-      if (!intro && !level) level = guessLevel(text);
-      if (!intro && before.level && !before.scene && !scene) scene = text.slice(0, 60);
-      profileRef.current = { level, scene }; setProfile(profileRef.current);
+      if (modeRef.current === 'chat') {
+        let { level, scene } = { level: read.level || before.level, scene: read.scene || before.scene };
+        if (!intro && !level) level = guessLevel(text);
+        if (!intro && before.level && !before.scene && !scene) scene = text.slice(0, 60);
+        profileRef.current = { level, scene }; setProfile(profileRef.current);
+      }
       if (!session) setServer('ready');
       if (speakOnRef.current) speak(clean);
     } catch (err) {
@@ -141,6 +148,15 @@ export default function TeacherChat({ ctx }) {
     setMsgs([]); setProfile(profileRef.current); setBusy(false); setNotice(''); setAllScenes(false);
     turn({ intro: true });
   }
+  // Changing between the conversation teacher and the accent coach starts a fresh session in the new mode.
+  function switchMode(next) {
+    if (next === modeRef.current) return;
+    runRef.current++; ctlRef.current && ctlRef.current.abort(); stopMic(); stopAudio();
+    modeRef.current = next; setMode(next);
+    msgsRef.current = []; profileRef.current = { level: '', scene: '' };
+    setMsgs([]); setProfile(profileRef.current); setBusy(false); setNotice(''); setAllScenes(false); setDraft('');
+    if (canChat) turn({ intro: true });
+  }
   function saveKey(keys, model) {
     saveSession({ keys, model }); setSession({ keys, model }); setNotice(''); // the lesson starts by itself (see the effect above)
   }
@@ -157,32 +173,36 @@ export default function TeacherChat({ ctx }) {
 
   return (<>
     <div className="card"><h3>👩‍🏫 Chat with teacher</h3>
-      <p className="muted">An AI speaking coach. Your languages and accent come from the menu at the top. The teacher starts by asking your level and the scenario you want, then you practise by typing or speaking and get kind corrections and useful phrases. {hasKey ? STATUS.own : STATUS[server]}</p>
+      <div className="row pills">
+        <button className={!coach ? 'tab on' : 'tab'} aria-pressed={!coach} onClick={() => switchMode('chat')}>💬 Conversation teacher</button>
+        <button className={coach ? 'tab on' : 'tab'} aria-pressed={coach} onClick={() => switchMode('coach')}>🎙️ Accent coach</button></div>
+      <p className="muted">{coach ? 'An accent and pronunciation coach. Give it a phrase and it shows how a native speaker from your chosen region says it: IPA, stress, mouth and tongue tips, rhythm and a practice sentence. Your language and accent come from the menu at the top, or just name another region in your message.' : 'An AI speaking coach. Your languages and accent come from the menu at the top. The teacher starts by asking your level and the scenario you want, then you practise by typing or speaking and get kind corrections and useful phrases.'} {hasKey ? STATUS.own : STATUS[server]}</p>
       {!hasKey && (server === 'offline' || server === 'nokey') && <div className="row"><button className="ghost" onClick={() => { setServer('checking'); checkHealth().then(setServer); }}>↻ Check again</button></div>}
     </div>
     <KeyPanel active={hasKey} needsKey={!hasKey && (server === 'offline' || server === 'nokey')} model={session && session.model} onSave={saveKey} onRemove={removeKey} />
     <div className="card">
-      <p className="muted">🌍 Practising <strong>{st.practice.name}</strong> ({st.accent.label}){st.accent.approximate ? ' – experimental accent, the voice only approximates it' : ''} · Teacher replies in <strong>{st.reply.name}</strong> · Level: <strong>{profile.level || 'not chosen yet'}</strong> · Scenario: <strong>{profile.scene || 'not chosen yet'}</strong></p>
+      <p className="muted">🌍 Practising <strong>{st.practice.name}</strong> ({st.accent.label}){st.accent.approximate ? ' – experimental accent, the voice only approximates it' : ''} · {coach ? <>Explanations in <strong>{st.reply.name}</strong> · Only the local phrase and the practice sentence are read aloud</> : <>Teacher replies in <strong>{st.reply.name}</strong> · Level: <strong>{profile.level || 'not chosen yet'}</strong> · Scenario: <strong>{profile.scene || 'not chosen yet'}</strong></>}</p>
       <div className="row"><span className="muted">{turns} turns</span>
         <button className={speakOn ? '' : 'ghost'} aria-pressed={speakOn} onClick={() => { setSpeakOn(!speakOn); stopAudio(); }}>{speakOn ? '🔊 Read replies aloud: on' : '🔇 Read replies aloud: off'}</button>
         <button className="ghost" onClick={startOver}>↺ Start over</button></div>
       <div className="chat tall" ref={listRef} aria-live="polite" dir={rtl}>
-        {!msgs.length && !busy && <div className="bubble ai" dir="auto">👩‍🏫 Hi! I’m your teacher. {canChat ? 'Press “Start lesson” and I’ll ask your level and what you’d like to practise.' : server === 'checking' ? 'One moment, I’m getting ready…' : 'Add your API key in the box above and I’ll start the lesson right away.'}{canChat && <div><button className="small" onClick={() => turn({ intro: true })}>▶ Start lesson</button></div>}</div>}
+        {!msgs.length && !busy && <div className="bubble ai" dir="auto">👩‍🏫 Hi! I’m your {coach ? 'accent coach' : 'teacher'}. {canChat ? (coach ? 'Press “Start lesson” and tell me a phrase you want to say in your chosen accent.' : 'Press “Start lesson” and I’ll ask your level and what you’d like to practise.') : server === 'checking' ? 'One moment, I’m getting ready…' : 'Add your API key in the box above and I’ll start the lesson right away.'}{canChat && <div><button className="small" onClick={() => turn({ intro: true })}>▶ Start lesson</button></div>}</div>}
         {msgs.map((m, i) => (m.role === 'user'
           ? <div key={i} className="bubble me" dir="auto">{m.text}</div>
-          : <div key={i} className="bubble ai" dir="auto">👩‍🏫 {m.text ? splitReply(m.text).map((p, k) => (p.phrase ? <mark className="teacher-phrase" key={k}>{p.text}</mark> : <span key={k}>{p.text}</span>)) : <span className="muted">Your teacher is joining…</span>}
+          : <div key={i} className="bubble ai" dir="auto">👩‍🏫 {m.text && coach ? <RichText text={m.text} /> : m.text ? splitReply(m.text).map((p, k) => (p.phrase ? <mark className="teacher-phrase" key={k}>{p.text}</mark> : <span key={k}>{p.text}</span>)) : <span className="muted">Your teacher is joining…</span>}
             {m.text && !m.streaming && <div><button className="ghost small" onClick={() => speak(m.text)} title="Listen to this reply">🔊 Listen</button></div>}</div>))}
       </div>
       {notice && <p className="muted" role="status">ℹ️ {notice} <button className="ghost small" onClick={() => setNotice('')} aria-label="Dismiss message">×</button></p>}
-      {answered && !busy && stage === 'level' && <div className="row pills"><span className="muted">Tap your level or type it:</span>{LEVELS.map(([name, icon]) => <button key={name} className="tab" onClick={() => send(null, name)}><span aria-hidden="true">{icon}</span> {name}</button>)}</div>}
-      {answered && !busy && (stage === 'scene' || allScenes) && <div className="row pills"><span className="muted">{stage === 'scene' ? 'Tap a scenario or describe your own:' : 'Switch to another scenario:'}</span>
+      {!coach && answered && !busy && stage === 'level' && <div className="row pills"><span className="muted">Tap your level or type it:</span>{LEVELS.map(([name, icon]) => <button key={name} className="tab" onClick={() => send(null, name)}><span aria-hidden="true">{icon}</span> {name}</button>)}</div>}
+      {!coach && answered && !busy && (stage === 'scene' || allScenes) && <div className="row pills"><span className="muted">{stage === 'scene' ? 'Tap a scenario or describe your own:' : 'Switch to another scenario:'}</span>
         {shownScenes.map((sc) => <button key={sc[0]} className="tab" onClick={() => pickScene(sc)}><span aria-hidden="true">{sc[1]}</span> {sc[0]}</button>)}
         <button className="ghost" aria-expanded={allScenes && stage === 'scene' ? true : undefined} onClick={() => setAllScenes(!allScenes)}>{allScenes ? 'Fewer ▴' : `${SCENES.length} scenarios ▾`}</button></div>}
-      {answered && !busy && stage === 'practice' && <div className="row pills"><span className="muted">Try saying:</span>{QUICK.map((p) => <button key={p} className="tab" onClick={() => setDraft(p)}>{p}</button>)}
+      {coach && answered && !busy && <div className="row pills"><span className="muted">Try a phrase:</span>{COACH_PHRASES.map((p) => <button key={p} className="tab" onClick={() => send(null, `Teach me to say this in my chosen accent: ${p}`)}>{p}</button>)}</div>}
+      {!coach && answered && !busy && stage === 'practice' && <div className="row pills"><span className="muted">Try saying:</span>{QUICK.map((p) => <button key={p} className="tab" onClick={() => setDraft(p)}>{p}</button>)}
         {!allScenes && <button className="ghost" onClick={() => setAllScenes(true)}>🎭 Change scenario</button>}</div>}
       <form className="row" onSubmit={send}>
         {SR ? <button type="button" className={live ? 'rec' : ''} aria-pressed={live} onClick={live ? stopMic : startMic}>{live ? '⏹ Stop' : '🎤 Speak'}</button> : null}
-        <input ref={inputRef} value={draft} onChange={(e) => setDraft(e.target.value)} placeholder={live ? 'Listening… speak now' : stage === 'practice' ? `Type in ${st.practice.name} or tap Speak…` : 'Type your answer or tap Speak…'} dir="auto" lang={st.accent.listenLocale} disabled={busy} aria-label="Your message" style={{ flex: '1 1 220px', minWidth: 0 }} />
+        <input ref={inputRef} value={draft} onChange={(e) => setDraft(e.target.value)} placeholder={live ? 'Listening… speak now' : coach ? 'Type a phrase to learn, or name an accent such as “Scottish”…' : stage === 'practice' ? `Type in ${st.practice.name} or tap Speak…` : 'Type your answer or tap Speak…'} dir="auto" lang={st.accent.listenLocale} disabled={busy} aria-label="Your message" style={{ flex: '1 1 220px', minWidth: 0 }} />
         <button type="submit" disabled={!draft.trim() || busy}>{busy ? 'Sending…' : 'Send ➤'}</button>
       </form>
       {!SR && <p className="muted">Voice input is not available in this browser (try Chrome or Edge). Typing works everywhere.</p>}

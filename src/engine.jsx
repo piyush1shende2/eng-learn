@@ -6,12 +6,15 @@ const norm = (s) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 import { speak, canSpeak, chime } from './speech.js';
 export { speak, canSpeak };
 
+// A new round (the second argument) needs a fresh shuffle, so it is part of the memo's dependencies.
+const pickItems = (items, _round) => sh(items).slice(0, 8);
+
 // One engine for every multiple-choice / typed-answer puzzle (modes: choice, type, fix, letter).
 export function Quiz({ spec, ctx }) {
   const { award, addMistake, t } = ctx;
   const [round, setRound] = useState(0), [i, setI] = useState(0), [val, setVal] = useState(''), [res, setRes] = useState(null), [score, setScore] = useState(0), [end, setEnd] = useState(false);
   const bonus = useRef(false);
-  const items = useMemo(() => sh(spec.items).slice(0, 8), [spec, round]);
+  const items = useMemo(() => pickItems(spec.items, round), [spec, round]);
   const q = items[i];
   const opts = useMemo(() => (q && q.o ? sh(q.o) : null), [q]);
   const scr = useMemo(() => {
@@ -59,7 +62,7 @@ export function Quiz({ spec, ctx }) {
 export function OrderGame({ ctx: { award, addMistake, t } }) {
   const [i, setI] = useState(0), [pick, setPick] = useState([]), [r, setR] = useState(null);
   const d = PHONE[i % PHONE.length];
-  const pool = useMemo(() => sh(d.lines.map((l, k) => ({ l, k }))), [i]);
+  const pool = useMemo(() => sh(d.lines.map((l, k) => ({ l, k }))), [d.lines]);
   const toggle = (k) => !r && setPick(pick.includes(k) ? pick.filter((x) => x !== k) : [...pick, k]);
   const check = () => {
     if (r || pick.length !== d.lines.length) return;

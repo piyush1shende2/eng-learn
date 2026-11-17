@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SR, speak, stopSpeak, listen, micError, tokenize, recogLang, nw, align, lev, grammarTips, chime } from './speech.js';
 import MicCheck from './MicCheck.jsx';
 import SttBadge from './SttBadge.jsx';
@@ -16,21 +16,20 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
   const { award, addMistake, s } = ctx;
   const tokz = (x) => tokenize(x, s.target || 'en');
   const vs = Array.isArray(variants) ? variants : [variants];
-  const key = vs.join('|');
   const [mode, setMode] = useState(SR && !typeOnly ? 'speak' : 'type');
-  const [heard, setHeard] = useState(''), [live, setLive] = useState(false), [res, setRes] = useState(null), [err, setErr] = useState('');
-  const rec = useRef(null), started = useRef(false), [gentle, setGentle] = useState(true), [accId, setAccId] = useState(getMyAccent());
+  const [heard, setHeardState] = useState(''), [live, setLive] = useState(false), [res, setRes] = useState(null), [err, setErr] = useState('');
+  const rec = useRef(null), started = useRef(false), heardRef = useRef(''), [gentle, setGentle] = useState(true), [accId, setAccId] = useState(getMyAccent());
+  const setHeard = (t) => { heardRef.current = t; setHeardState(t); }; // heardRef always holds the latest text for the microphone callbacks
   useEffect(() => onMyAccent(setAccId), []);
   const accent = mode === 'speak' && (s.target || 'en') === 'en' ? profileById(accId) : null;
-  const T = useMemo(() => vs.map((v) => tokz(v)), [key]);
-  const hw = tokz(heard).map(nw).filter(Boolean), heardRef = useRef('');
-  heardRef.current = heard;
+  const T = vs.map((v) => tokz(v));
+  const hw = tokz(heard).map(nw).filter(Boolean);
   const scored = T.map((tk) => { const a = align(tk.map(nw), hw, !res, mode === 'speak' && gentle, accent); return { tk, a, ok: a.st.filter((x) => x === 'ok').length / tk.length }; });
   const bi = scored.reduce((b, x, i) => (x.ok > scored[b].ok ? i : b), 0);
   const { tk, a } = scored[bi];
 
   const stop = () => { try { rec.current && rec.current.stop(); } catch { /* already stopped */ } setLive(false); };
-  const tset = useMemo(() => new Set(T.flat().map(nw)), [T]);
+  const tset = new Set(T.flat().map(nw));
   const start = () => {
     setErr(''); setHeard(''); setRes(null); started.current = true; stopSpeak(); // stop the AI voice so the mic does not hear it
     let failed = false;
@@ -43,7 +42,6 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
     } catch { setErr(micError('start')); started.current = false; }
   };
   useEffect(() => () => { try { rec.current && rec.current.stop(); } catch { /* ignore */ } }, []);
-  useEffect(() => { if (!live && started.current && heard && mode === 'speak' && !res) finish(); }, [live]);
 
   const finish = () => {
     if (res || !hw.length) return;
@@ -60,6 +58,8 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
     chime(acc >= threshold);
     setRes({ acc, report, accNotes, tips: mode === 'type' && (s.target || 'en') === 'en' ? grammarTips(heard) : [], left: Math.max(0, tk.length - f.pos) });
   };
+  // When listening has ended and something was heard, check it. Runs after every render and only acts right after listening stops.
+  useEffect(() => { if (!live && started.current && heard && mode === 'speak' && !res) finish(); });
   const reset = () => { stop(); setHeard(''); setRes(null); setErr(''); started.current = false; };
   const pickMode = (m) => { reset(); setMode(m); };
 
