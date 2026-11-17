@@ -1,5 +1,5 @@
 // Speech helpers: text-to-speech voices/accents, speech recognition, word alignment, grammar tips.
-import { WHISPER_OK, useWhisper, whisperListen } from './engine/stt.js';
+import { WHISPER_OK, whisperEnabled, whisperListen } from './engine/stt.js';
 export const canSpeak = typeof window !== 'undefined' && 'speechSynthesis' in window;
 const NativeSR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
 // SR is truthy when ANY listening engine exists: offline Whisper or the browser's own recogniser.
@@ -115,7 +115,7 @@ function nativeListen({ lang = 'en-US', onText, onEnd, onError, score }) {
 }
 // Picks the listening engine: offline Whisper when it is switched on and loads, otherwise the browser recogniser.
 export function listen(o) {
-  if (useWhisper()) return whisperListen({ ...o, fallback: NativeSR ? nativeListen : null });
+  if (whisperEnabled()) return whisperListen({ ...o, fallback: NativeSR ? nativeListen : null });
   if (!NativeSR) { setTimeout(() => o.onError && o.onError('service-not-allowed'), 0); return { stop() {} }; }
   return nativeListen(o);
 }

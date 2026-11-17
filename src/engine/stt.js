@@ -4,7 +4,8 @@ import { concatChunks, resampleTo16k, isSilent, rms, whisperLang, cleanText } fr
 
 const BASE = (import.meta.env && import.meta.env.BASE_URL) || '/';
 const abs = (p) => new URL(BASE + p, document.baseURI).href;
-const MODEL = 'whisper-base'; // folder inside public/models
+const MODEL = 'whisper-base'; // folder inside public/models (local copy, used on localhost)
+const REMOTE_MODEL = 'onnx-community/whisper-base'; // downloaded once from Hugging Face when there is no local copy (the GitHub link)
 const MAX_SECONDS = 60;
 
 export const WHISPER_OK = typeof window !== 'undefined' && typeof Worker !== 'undefined' && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && !!window.AudioContext && typeof AudioWorkletNode !== 'undefined';
@@ -16,15 +17,20 @@ const setStatus = (p) => { status = { ...status, ...p }; subs.forEach((f) => f(s
 export const getSttStatus = () => status;
 export const onSttStatus = (fn) => { subs.add(fn); return () => subs.delete(fn); };
 export const setSttEngine = (engine) => { try { localStorage.setItem('speakwise.stt', engine); } catch { /* storage unavailable */ } setStatus({ engine }); if (engine === 'whisper') preloadStt(); };
-export const useWhisper = () => WHISPER_OK && status.engine === 'whisper' && !failed;
+export const whisperEnabled = () => WHISPER_OK && status.engine === 'whisper' && !failed;
 
 // ---- worker connection ----
 let worker = null, ready = null, seq = 0;
 const pending = new Map();
+// True when public/models/whisper-base really exists (a dev server answers missing files with a web page, so the type is checked too).
+async function localModelExists() {
+  try { const r = await fetch(abs('models/' + MODEL + '/config.json'), { cache: 'no-store' }); return r.ok && /json/i.test(r.headers.get('content-type') || ''); } catch { return false; }
+}
 function boot() {
   if (ready) return ready;
   setStatus({ state: 'loading', msg: '' });
-  ready = new Promise((resolve, reject) => {
+  ready = localModelExists().then((local) => new Promise((resolve, reject) => {
+    setStatus({ source: local ? 'local' : 'remote' });
     try { worker = new Worker(new URL('./stt.worker.js', import.meta.url), { type: 'module' }); } catch (e) { reject(e); return; }
     worker.onmessage = (e) => {
       const m = e.data;
@@ -33,17 +39,17 @@ function boot() {
       else if (m.type === 'result') { const p = pending.get(m.id); if (p) { pending.delete(m.id); if (m.error) p.reject(new Error(m.error)); else p.resolve(m.text); } }
     };
     worker.onerror = (e) => reject(new Error((e && e.message) || 'the speech worker stopped'));
-    worker.postMessage({ type: 'init', model: MODEL, modelBase: abs('models/'), ortBase: abs('ort/') });
-  });
+    worker.postMessage({ type: 'init', remote: !local, model: local ? MODEL : REMOTE_MODEL, modelBase: abs('models/'), ortBase: abs('ort/') });
+  }));
   ready.catch((e) => {
     failed = true;
-    setStatus({ state: 'error', msg: 'The offline speech model could not start (' + e.message + '). The browser recogniser is used instead.' });
+    setStatus({ state: 'error', msg: 'The speech model could not start (' + e.message + '). The browser recogniser is used instead.' });
     try { worker && worker.terminate(); } catch { /* ignore */ }
     worker = null;
   });
   return ready;
 }
-export const preloadStt = () => { if (useWhisper()) boot().catch(() => {}); };
+export const preloadStt = () => { if (whisperEnabled()) boot().catch(() => {}); };
 function transcribe(audio, lang) {
   return new Promise((resolve, reject) => {
     const id = ++seq; pending.set(id, { resolve, reject });
