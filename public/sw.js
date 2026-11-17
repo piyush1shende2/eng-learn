@@ -2,10 +2,10 @@
    - Page, scripts and styles: network first (so updates arrive), cached copy when offline.
    - Audio, OCR data, fonts and images: cache first (large, never change), stored the first time they are used.
    Nothing is stored until you use it, so low-storage devices are not filled up. */
-const VERSION = 'speakwise-v2';
+const VERSION = 'speakwise-v3';
 const RUNTIME = VERSION + '-runtime';
 const MEDIA = VERSION + '-media';
-const isMedia = (url) => !/\.json$/i.test(url.pathname) && (/\.(mp3|ogg|wav|m4a|traineddata\.gz|woff2?|png|jpe?g|svg|gif|webp)$/i.test(url.pathname) || /\/(ocr|voices|accents)\//.test(url.pathname));
+const isMedia = (url) => !/\.json$/i.test(url.pathname) && (/\.(mp3|ogg|wav|m4a|traineddata\.gz|woff2?|png|jpe?g|svg|gif|webp)$/i.test(url.pathname) || /\/(ocr|voices|accents|models|ort)\//.test(url.pathname));
 
 self.addEventListener('install', (e) => { e.waitUntil(self.skipWaiting()); });
 self.addEventListener('activate', (e) => {

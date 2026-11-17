@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { SR, speak, stopSpeak, listen, micError } from './speech.js';
 import MicCheck from './MicCheck.jsx';
+import SttBadge from './SttBadge.jsx';
 import { starters, firstMessage, reply } from './bot.js';
 import { evaluate } from './evaluate.js';
 import { Karaoke } from './Attempt.jsx';
@@ -104,6 +105,7 @@ export default function FreeChat({ ctx }) {
       </div>
       {!SR && <p className="muted">Voice input is not available in this browser (try Chrome or Edge). Typing works everywhere.</p>}
       {err && <p className="fb no" role="alert">{err}</p>}
+      <SttBadge />
       <p className="muted">Press Stop when you finish speaking. I keep listening through short pauses.</p>
       <details><summary>Microphone not working? Test it</summary><MicCheck /></details>
       <p className="muted">The microphone starts only when you press it, and nothing is recorded or saved by this app. In Chrome and Edge the browser's speech recognition may send your voice to its provider. The chat is saved in this browser only.</p>

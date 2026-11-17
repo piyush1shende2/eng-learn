@@ -1,6 +1,9 @@
 // Speech helpers: text-to-speech voices/accents, speech recognition, word alignment, grammar tips.
+import { WHISPER_OK, useWhisper, whisperListen } from './engine/stt.js';
 export const canSpeak = typeof window !== 'undefined' && 'speechSynthesis' in window;
-export const SR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
+const NativeSR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
+// SR is truthy when ANY listening engine exists: offline Whisper or the browser's own recogniser.
+export const SR = NativeSR || (WHISPER_OK ? true : null);
 
 export const ACCENTS = [
   { id: 'en-US', label: 'American English' }, { id: 'en-GB', label: 'British English' }, { id: 'en-IE', label: 'Irish English' },
@@ -84,10 +87,10 @@ export function beep() {
 
 // Keeps listening through pauses (the browser stops on its own after a few seconds of silence),
 // joins the pieces together, and prefers the alternative that best matches the expected words.
-export function listen({ lang = 'en-US', onText, onEnd, onError, score }) {
+function nativeListen({ lang = 'en-US', onText, onEnd, onError, score }) {
   let base = '', cur = '', stopped = false, rec = null, last = Date.now(), restarts = 0, fatal = false;
   const make = () => {
-    const r = new SR(); rec = r; r.lang = lang; r.continuous = true; r.interimResults = true; r.maxAlternatives = 3;
+    const r = new NativeSR(); rec = r; r.lang = lang; r.continuous = true; r.interimResults = true; r.maxAlternatives = 3;
     r.onresult = (e) => {
       last = Date.now(); let s = '', c = 0, n = 0;
       for (let i = 0; i < e.results.length; i++) {
@@ -110,9 +113,15 @@ export function listen({ lang = 'en-US', onText, onEnd, onError, score }) {
   make();
   return { stop: () => { stopped = true; try { rec && rec.stop(); } catch { /* already stopped */ } } };
 }
+// Picks the listening engine: offline Whisper when it is switched on and loads, otherwise the browser recogniser.
+export function listen(o) {
+  if (useWhisper()) return whisperListen({ ...o, fallback: NativeSR ? nativeListen : null });
+  if (!NativeSR) { setTimeout(() => o.onError && o.onError('service-not-allowed'), 0); return { stop() {} }; }
+  return nativeListen(o);
+}
 export const micError = (e) => {
   if (typeof window !== 'undefined' && window.isSecureContext === false) return 'The microphone only works on a secure page. Open the app at http://localhost:5173 (run npm run dev) instead of opening the file directly.';
-  const m = { 'not-allowed': 'Microphone permission is blocked. Click the lock icon in the address bar, allow the microphone, and try again.', 'service-not-allowed': 'The browser blocked speech recognition. Allow the microphone for this page and try again.', 'audio-capture': 'No microphone was found. Plug one in or pick the right input in your system sound settings.', network: 'Speech recognition needs an internet connection in this browser (some browsers, such as Brave or Firefox, do not support it). Try Chrome or Edge, or type instead.', 'language-not-supported': 'This language is not supported by your browser. Choose American or British English.', start: 'Could not start the microphone. You can type instead.' };
+  const m = { 'not-allowed': 'Microphone permission is blocked. Click the lock icon in the address bar, allow the microphone, and try again.', 'service-not-allowed': 'The browser blocked speech recognition. Allow the microphone for this page and try again.', 'audio-capture': 'No microphone was found. Plug one in or pick the right input in your system sound settings.', network: 'Speech recognition needs an internet connection in this browser (some browsers, such as Brave or Firefox, do not support it). Try Chrome or Edge, or type instead.', 'whisper-load': 'The offline speech model could not be loaded. Check that the folder public/models/whisper-base exists and run npm run dev again, or switch to the browser recogniser.', 'language-not-supported': 'This language is not supported by your browser. Choose American or British English.', start: 'Could not start the microphone. You can type instead.' };
   return m[e] || `Speech recognition problem (${e}). You can type instead.`;
 };
 

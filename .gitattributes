@@ -6,3 +6,5 @@
 *.gz binary
 *.png binary
 *.wasm binary
+public/models/** filter=lfs diff=lfs merge=lfs -text
+public/voices/** filter=lfs diff=lfs merge=lfs -text

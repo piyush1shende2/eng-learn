@@ -10,3 +10,9 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+public/ort/
+public/models/
+public/voices/en/
+public/voices/de/
+public/voices/it/
+public/voices/cs/

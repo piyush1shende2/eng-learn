@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { SR, speak, stopSpeak, listen, micError, tokenize, recogLang, nw, align, lev, grammarTips, chime } from './speech.js';
 import MicCheck from './MicCheck.jsx';
+import SttBadge from './SttBadge.jsx';
 
 // Dark guidance panel: white = already said, red = mistake, grey = still to say.
 export function Karaoke({ tokens, st, pos, legend = true }) {
@@ -67,7 +68,8 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
     {mode === 'speak' ? (<>
       <div className="row"><button onClick={live ? stop : start} aria-pressed={live}>{live ? '⏹ Stop' : '🎤 Start speaking'}</button><button className="ghost" onClick={finish} disabled={!hw.length}>Check</button></div>
       <label className="muted"><input type="checkbox" checked={gentle} onChange={(e) => setGentle(e.target.checked)} /> Gentle matching (accept words that are one letter off)</label>
-      <p className="muted">Press Stop when you finish. I keep listening through short pauses. The microphone starts only when you press the button, and this app does not record or save audio. In Chrome and Edge the browser's speech recognition may send your voice to its provider's servers.</p>
+      <SttBadge />
+      <p className="muted">Press Stop when you finish. I keep listening through short pauses. The microphone starts only when you press the button, and this app does not save audio. Offline Whisper keeps your voice on this computer; the browser recogniser (Chrome, Edge) may send it to its provider's servers.</p>
       {heard && <p className="muted">I heard: “{heard}”</p>}
       <details><summary>Microphone not working? Test it</summary><MicCheck /></details>
     </>) : (<div className="row"><input aria-label="Type the sentence" value={heard} disabled={!!res} placeholder="Type here and press Enter" onChange={(e) => setHeard(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && finish()} /><button onClick={finish} disabled={!hw.length}>Check</button></div>)}
