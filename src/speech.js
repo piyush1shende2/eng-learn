@@ -1,5 +1,6 @@
 // Speech helpers: text-to-speech voices/accents, speech recognition, word alignment, grammar tips.
 import { WHISPER_OK, whisperEnabled, whisperListen } from './engine/stt.js';
+import { accentMatch } from './engine/accent.js';
 export const canSpeak = typeof window !== 'undefined' && 'speechSynthesis' in window;
 const NativeSR = typeof window !== 'undefined' ? window.SpeechRecognition || window.webkitSpeechRecognition : null;
 // SR is truthy when ANY listening engine exists: offline Whisper or the browser's own recogniser.
@@ -150,8 +151,9 @@ export function lev(a, b) {
   return p[n];
 }
 // Walk the learner's words against the target: ok (white), bad (red), skip (red); untouched words stay grey.
-export function align(target, heard, partial, gentle) {
-  const eq = (h, t) => h === t || (gentle && t.length >= 5 && lev(h, t) <= 1); // gentle: accept near matches
+export function align(target, heard, partial, gentle, accent) {
+  // gentle: accept near matches; accent: accept pronunciations that are common for the learner's own accent
+  const eq = (h, t) => h === t || (gentle && t.length >= 5 && lev(h, t) <= 1) || (!!accent && !!accentMatch(accent, t, h));
   const st = Array(target.length).fill(null), hd = Array(target.length).fill('');
   let p = 0;
   for (let k = 0; k < heard.length && p < target.length; k++) {

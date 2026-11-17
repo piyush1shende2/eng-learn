@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { SR, speak, stopSpeak, listen, micError, tokenize, recogLang, nw, align, lev, grammarTips, chime } from './speech.js';
 import MicCheck from './MicCheck.jsx';
 import SttBadge from './SttBadge.jsx';
+import AccentProfile from './AccentProfile.jsx';
+import { accentMatch, getMyAccent, onMyAccent, profileById } from './engine/accent.js';
 
 // Dark guidance panel: white = already said, red = mistake, grey = still to say.
 export function Karaoke({ tokens, st, pos, legend = true }) {
@@ -17,11 +19,13 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
   const key = vs.join('|');
   const [mode, setMode] = useState(SR && !typeOnly ? 'speak' : 'type');
   const [heard, setHeard] = useState(''), [live, setLive] = useState(false), [res, setRes] = useState(null), [err, setErr] = useState('');
-  const rec = useRef(null), started = useRef(false), [gentle, setGentle] = useState(true);
+  const rec = useRef(null), started = useRef(false), [gentle, setGentle] = useState(true), [accId, setAccId] = useState(getMyAccent());
+  useEffect(() => onMyAccent(setAccId), []);
+  const accent = mode === 'speak' && (s.target || 'en') === 'en' ? profileById(accId) : null;
   const T = useMemo(() => vs.map((v) => tokz(v)), [key]);
   const hw = tokz(heard).map(nw).filter(Boolean), heardRef = useRef('');
   heardRef.current = heard;
-  const scored = T.map((tk) => { const a = align(tk.map(nw), hw, !res, mode === 'speak' && gentle); return { tk, a, ok: a.st.filter((x) => x === 'ok').length / tk.length }; });
+  const scored = T.map((tk) => { const a = align(tk.map(nw), hw, !res, mode === 'speak' && gentle, accent); return { tk, a, ok: a.st.filter((x) => x === 'ok').length / tk.length }; });
   const bi = scored.reduce((b, x, i) => (x.ok > scored[b].ok ? i : b), 0);
   const { tk, a } = scored[bi];
 
@@ -44,15 +48,17 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
   const finish = () => {
     if (res || !hw.length) return;
     stop(); started.current = false;
-    const f = align(tk.map(nw), hw, false, mode === 'speak' && gentle), ok = f.st.filter((x) => x === 'ok').length, acc = ok / tk.length, report = [];
+    const f = align(tk.map(nw), hw, false, mode === 'speak' && gentle, accent), ok = f.st.filter((x) => x === 'ok').length, acc = ok / tk.length, report = [];
     f.st.forEach((x, i) => {
       if (x === 'bad') report.push({ w: tk[i], h: f.hd[i], why: lev(f.hd[i], nw(tk[i])) <= 2 ? 'Close! Check the spelling or pronunciation.' : 'A different word.' });
       else if (x === 'skip') report.push({ w: tk[i], h: '', why: 'This word was missed.' });
     });
+    const accNotes = [];
+    f.st.forEach((x, i) => { const m = x === 'ok' && f.hd[i] && f.hd[i] !== nw(tk[i]) ? accentMatch(accent, nw(tk[i]), f.hd[i]) : null; if (m) accNotes.push({ w: tk[i], h: f.hd[i], why: m.why }); });
     report.slice(0, 5).forEach((r) => addMistake(r.h || '(missed)', nw(r.w), 'Practice: ' + r.why));
     award(Math.round(acc * 12) + (acc >= 0.9 ? 5 : 0), 'speak-' + mode);
     chime(acc >= threshold);
-    setRes({ acc, report, tips: mode === 'type' && (s.target || 'en') === 'en' ? grammarTips(heard) : [], left: Math.max(0, tk.length - f.pos) });
+    setRes({ acc, report, accNotes, tips: mode === 'type' && (s.target || 'en') === 'en' ? grammarTips(heard) : [], left: Math.max(0, tk.length - f.pos) });
   };
   const reset = () => { stop(); setHeard(''); setRes(null); setErr(''); started.current = false; };
   const pickMode = (m) => { reset(); setMode(m); };
@@ -69,6 +75,7 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
       <div className="row"><button onClick={live ? stop : start} aria-pressed={live}>{live ? '⏹ Stop' : '🎤 Start speaking'}</button><button className="ghost" onClick={finish} disabled={!hw.length}>Check</button></div>
       <label className="muted"><input type="checkbox" checked={gentle} onChange={(e) => setGentle(e.target.checked)} /> Gentle matching (accept words that are one letter off)</label>
       <SttBadge />
+      {(s.target || 'en') === 'en' && <AccentProfile />}
       <p className="muted">Press Stop when you finish. I keep listening through short pauses. The microphone starts only when you press the button, and this app does not save audio. Offline Whisper keeps your voice on this computer; the browser recogniser (Chrome, Edge) may send it to its provider's servers.</p>
       {heard && <p className="muted">I heard: “{heard}”</p>}
       <details><summary>Microphone not working? Test it</summary><MicCheck /></details>
@@ -77,6 +84,7 @@ export function Attempt({ variants, ctx, onContinue, threshold = 0.6, typeOnly, 
     {res && (<div className="result" role="status">
       <p className="big">{Math.round(res.acc * 100)}% of the words matched</p>
       {res.report.map((r, i) => <p key={i}>“{r.w}”{r.h ? <> → I got “{r.h}”</> : null}. {r.why}</p>)}
+      {res.accNotes && res.accNotes.length > 0 && <div><p className="muted">Accepted because of your accent setting:</p>{res.accNotes.map((n, i) => <p key={i}>✅ “{n.w}” → I heard “{n.h}” ({n.why}).</p>)}</div>}
       {res.left > 0 && <p className="muted">{res.left} word(s) were not reached.</p>}
       {res.tips.map((tp) => <p key={tp}>💡 {tp}</p>)}
       <p className="muted">Speaking is judged by what the recogniser understood, so it shows clarity, not a full pronunciation score.</p>
