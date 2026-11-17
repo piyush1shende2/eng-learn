@@ -1,0 +1,10 @@
+Real accent recordings. Keep these credits when you publish.
+
+CSTR VCTK Corpus 0.92 (University of Edinburgh)
+  Licence: CC BY 4.0
+  Yamagishi, Veaux & MacDonald (2019). CSTR VCTK Corpus: English multi-speaker corpus for CSTR Voice Cloning Toolkit. University of Edinburgh. https://doi.org/10.7488/ds/2645
+
+Speech Accent Archive (George Mason University, Kaggle copy)
+  Licence: CC BY-NC-SA 4.0 (as listed on the Kaggle dataset page; non-commercial. VERIFY on the dataset page before publishing)
+  Weinberger, S. (2015). Speech Accent Archive. George Mason University. https://accent.gmu.edu
+
