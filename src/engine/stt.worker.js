@@ -1,15 +1,16 @@
 // Runs Whisper in a background thread so the page never freezes while it listens.
-// Everything is loaded from this site (public/models and public/ort), so it works offline.
+// On localhost the model comes from public/models (no internet needed). On the GitHub link it is downloaded once from
+// Hugging Face and kept in the browser, so later visits work offline too. The runtime files always come from this site (public/ort).
 import { pipeline, env } from '@huggingface/transformers';
 
 let asr = null;
 const reply = (m) => self.postMessage(m);
 
-async function init({ modelBase, model, ortBase }) {
-  env.allowRemoteModels = false; // never go to the internet for the model
-  env.allowLocalModels = true;
-  env.localModelPath = modelBase;
-  env.useBrowserCache = false;
+async function init({ modelBase, model, ortBase, remote }) {
+  env.allowRemoteModels = !!remote;
+  env.allowLocalModels = !remote;
+  env.useBrowserCache = !!remote;
+  if (!remote) env.localModelPath = modelBase;
   const wasm = env.backends && env.backends.onnx && env.backends.onnx.wasm;
   if (wasm) {
     wasm.wasmPaths = ortBase; // onnxruntime files copied by scripts/copy-ort.mjs

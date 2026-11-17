@@ -10,9 +10,13 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# Whisper/Piper files that are too big for git (downloaded on each computer; the live site loads them online)
 public/ort/
 public/models/
-public/voices/en/
-public/voices/de/
-public/voices/it/
-public/voices/cs/
+public/voices/.cache/
+public/voices/en/en_GB/
+public/voices/en/en_US/
+public/voices/de/de_DE/
+public/voices/it/it_IT/
+public/voices/cs/cs_CZ/
